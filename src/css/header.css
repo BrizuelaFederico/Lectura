@@ -1,0 +1,22 @@
+header {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  background-color: black;
+
+  button {
+    background-color: transparent;
+    border: none;
+    transition: rotate 0.5s;
+    max-width: min-content;
+    &:active {
+      rotate: 360deg;
+      background-color: aliceblue;
+    }
+  }
+
+  h1 {
+    color: white;
+    flex-grow: 1;
+    text-align: center;
+  }
+}
