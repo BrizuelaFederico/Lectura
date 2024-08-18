@@ -6,11 +6,10 @@ header {
   button {
     background-color: transparent;
     border: none;
-    transition: rotate 0.5s;
+    transition: rotate 0.3s;
     max-width: min-content;
     &:active {
-      rotate: 360deg;
-      background-color: aliceblue;
+      rotate: 90deg;
     }
   }
 

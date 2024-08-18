@@ -6,11 +6,12 @@
     <title>Lectura</title>
     <link rel="stylesheet" type="text/css" href="./css/body.css">
     <link rel="stylesheet" type="text/css" href="./css/header.css">
+    <link rel="stylesheet" type="text/css" href="./css/aside.css">
   </head>
   <body>
     <header>
       <button>
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="icon icon-tabler icon-tabler-settings" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
           <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
           <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
@@ -18,39 +19,64 @@
       </button>
       <h1>Lectura</h1>
     </header>
-    <aside>   
-        <label>Tamaño Letra<input type="number"></input></label>
-        <label>Negrita<input type="checkbox"></input></label>
-        <label>Tipografía<select>
-            <option>Courier New</option>
-            <option>Send Flowers</option>
-        </select></label>
-        <label>Color Letra<input type="color"></input></label>
-        <label>Color Fondo<input type="color"></input></label>
-        <label>Espacio Horizontal Filas<input type="number"></input></label>
-        <label>Espacio Horizontal Sets<input type="number"></input></label>
-        <label>Margen Arriba<input type="number"></input></label>
-        <label>Margen Izquierda<input type="number"></input></label>
-        <label>Encuadre Arriba<input type="checkbox"></input></label>
-        <label>Encuadre Abajo<input type="checkbox"></input></label>
-        <label>Encuadre Derecha<input type="checkbox"></input></label>
-        <label>Encuadre Izquierda<input type="checkbox"></input></label>
-        <label>Estilo Encuadre<select>
-            <option>solid</option>
-            <option>dotted</option>
-            <option>dashed</option>
-        </select></label>   
+    <aside>
+      <div class="flex-setting">
+        <div class="flex-setting-item">
+          <label>Tamaño Letra<input type="number" min="0"></input></label>
+          <label>Negrita<input type="checkbox"></input></label>
+          <label>Tipografía<select>
+              <option>Courier New</option>
+              <option>Send Flowers</option>
+          </select></label>
+          <label>Color Letra<input type="color"></input></label>
+          <label>Ver Salto Línea y Tabulación<input type="checkbox"></input></label>
+        </div>
+        <div class="flex-setting-item">
+          <label>Color Fondo<input type="color"></input></label>
+          <label>Espacio Horizontal Filas<input type="number"></input></label>
+          <label>Espacio Horizontal Sets<input type="number"></input></label>
+          <label>Margen Arriba<input type="number"></input></label>
+          <label>Margen Izquierda<input type="number"></input></label>
+        </div>
+        <div class="flex-setting-item">
+          <label>Encuadre Arriba<input type="checkbox"></input></label>
+          <label>Encuadre Abajo<input type="checkbox"></input></label>
+          <label>Encuadre Derecha<input type="checkbox"></input></label>
+          <label>Encuadre Izquierda<input type="checkbox"></input></label>
+          <label>Estilo Encuadre<select>
+              <option>solid</option>
+              <option>dotted</option>
+              <option>dashed</option>
+          </select></label> 
+        </div> 
+        <div class="flex-setting-item"> 
+          <label>P.P.M Inicial<input type="number"></input></label>
+          <label>P.P.M Final<input type="number"></input></label>
+          <label>P.P.M Aumento<input type="number"></input></label>
+          <label>Filas<input type="number"></input></label>
+          <label>Sets<input type="number"></input></label>
+          <label>Palabras Sets<input type="number"></input></label>
+        </div>
+      </div>  
+      <div class="flex-buttons">
+        <button class="load-button">
+          <svg class="icon icon-tabler icon-tabler-upload" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+            <path d="M7 9l5 -5l5 5" />
+            <path d="M12 4l0 12" />
+          </svg>
+        </button>
+        <button class="save-button">
+          <svg class="icon icon-tabler icon-tabler-download" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+            <path d="M7 11l5 5l5 -5" />
+            <path d="M12 4l0 12" />
+          </svg>
+        </button> 
+      </div>
 
-        <label>P.P.M Inicial<input type="number"></input></label>
-        <label>P.P.M Final<input type="number"></input></label>
-        <label>P.P.M Aumento<input type="number"></input></label>
-        <label>Ver Salto Línea y Tabulación<input type="checkbox"></input></label>
-        <label>Filas<input type="number"></input></label>
-        <label>Sets<input type="number"></input></label>
-        <label>Palabras Sets<input type="number"></input></label>
-        
-        <button>Cargar Configuración</button>
-        <button>Guardar Configuración</button> 
     </aside>
     <article>
         <label class="estiloInputArchivo">Elegir archivo<input id="inputArchivo" type="file" accept=".txt"></label>

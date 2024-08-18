@@ -1,0 +1,63 @@
+aside {
+  background: linear-gradient(to left, #fda949, #d5ec51);
+  padding: 2vh 2vw;
+
+  input {
+    margin-left: 4px;
+
+    &[type="number"] {
+      background: transparent;
+      max-width: 50px;
+      border-bottom: #000000;
+      border-top: transparent;
+      border-left: transparent;
+      border-right: transparent;
+      border-width: 2px;
+      border-style: solid;
+      text-align: center;
+    }
+  }
+
+  .flex-setting {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .flex-setting-item {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 2vh 2vw;
+    label {
+      min-width: min-content;
+      margin-top: 2vh;
+    }
+  }
+
+  .flex-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 4vh;
+  }
+
+  .load-button {
+    background-color: transparent;
+    border: none;
+    transition: transform 0.2s;
+    margin-right: 4vw;
+    &:active {
+      transform: translate(0px, -10px);
+    }
+  }
+
+  .save-button {
+    background-color: transparent;
+    border: none;
+    transition: transform 0.2s;
+
+    &:active {
+      transform: translate(0px, 10px);
+    }
+  }
+}
