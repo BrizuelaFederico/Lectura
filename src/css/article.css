@@ -49,14 +49,35 @@ article {
   }
 
   div {
-    padding: 5px;
-    margin: 20px;
-    border: 5px solid #000000;
-    border-radius: 8%;
-    cursor: pointer;
-    width: 90vw;
-    min-height: 50px;
-    overflow: auto;
+    &.reading {
+      background-color: var(--backgroundColor);
+      padding-left: var(--marginLeft);
+      padding-top: var(--marginTop);
+      font-family: var(--typography), monospace, Arial, Helvetica, sans-serif;
+      font-size: var(--letterSize);
+      font-weight: var(--bold);
+      color: var(--letterColor);
+      margin: 20px;
+      border: 5px solid #000000;
+      border-radius: 8%;
+      cursor: pointer;
+      width: 90vw;
+      min-height: 50px;
+      overflow: auto;
+
+      div {
+        margin-bottom: var(--marginRow);
+      }
+      span {
+        margin-right: var(--marginSet);
+        box-sizing: border-box;
+        border-style: var(--borderStyle);
+        border-bottom-color: var(--borderBottom);
+        border-top-color: var(--borderTop);
+        border-left-color: var(--borderLeft);
+        border-right-color: var(--borderRight);
+      }
+    }
   }
 
   p {

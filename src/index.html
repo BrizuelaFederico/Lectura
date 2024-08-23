@@ -54,16 +54,8 @@
         </div>
         <div class="flex-setting-item">
           <label>Color Fondo<input type="color" id="backgroundColor" /></label>
-          <label
-            >Espacio Horizontal Filas<input
-              type="number"
-              id="horizontalRowSpacing"
-          /></label>
-          <label
-            >Espacio Horizontal Sets<input
-              type="number"
-              id="horizontalSetSpacing"
-          /></label>
+          <label>Distancia Filas<input type="number" id="marginRow" /></label>
+          <label>Distancia Sets<input type="number" id="marginSet" /></label>
           <label>Margen Arriba<input type="number" id="marginTop" /></label>
           <label>Margen Izquierda<input type="number" id="marginLeft" /></label>
         </div>
@@ -165,12 +157,22 @@
       </button>
 
       <p>Nombre Archivo</p>
-      <div>Aca va el texto a leer</div>
+      <div class="reading">
+        <div class="fila">
+          <span class="set">Fila 1</span><span>Set 2</span>
+        </div>
+        <div class="fila">
+          <span class="set">Fila 2</span><span>Set 4</span>
+        </div>
+        <div class="fila">
+          <span class="set">Fila 3</span><span>Set 6</span>
+        </div>
+      </div>
       <p>Página:<b>0</b></p>
       <p>Tiempo Total Lectura: <b>0</b></p>
       <p>Tiempo Restante Lectura: <b>0</b></p>
     </article>
 
-    <script src="./js/loadSetting.js" type="module"></script>
+    <script src="./js/setting.js" type="module"></script>
   </body>
 </html>

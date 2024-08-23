@@ -1,0 +1,18 @@
+:root {
+  --letterSize: 25px;
+  --bold: "lighter";
+  --typography: "Send Flowers";
+  --letterColor: #efe6e6;
+  --lineBreakTab: "true";
+  --backgroundColor: #474343;
+  --marginRow: 1px;
+  --marginSet: 1px;
+  --marginTop: 1px;
+  --marginLeft: 5px;
+  --borderTop: "false";
+  --borderBottom: #ece02c;
+  --borderRight: #ece02c;
+  --borderLeft: #ece02c;
+  --borderStyle: "solid";
+  --borderColor: #ece02c;
+}
