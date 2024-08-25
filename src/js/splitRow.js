@@ -1,4 +1,4 @@
-const tabLength = 4;
+const TAB_LENGTH = 4;
 
 function splitToRows(textSplitted, rowMaxLength) {
   const rows = [];
@@ -15,7 +15,7 @@ function splitToRows(textSplitted, rowMaxLength) {
       continue;
     }
 
-    if (exceedsLength(rowLength(row), wordLength(word), rowMaxLength)) {
+    if (exceedsLength(wordsArrayLength(row), wordLength(word), rowMaxLength)) {
       rows.push(row);
       row = [word];
       continue;
@@ -26,21 +26,16 @@ function splitToRows(textSplitted, rowMaxLength) {
   return rows;
 }
 
-function exceedsLength(actualRowLength, wordLength, rowMaxLength) {
-  return actualRowLength + wordLength > rowMaxLength;
+function exceedsLength(actualLength, wordLength, maxLength) {
+  return actualLength + wordLength > maxLength;
 }
 
-function rowLength(row) {
-  let length = 0;
-  for (let word of row) {
-    length += wordLength(word);
-  }
-  return length;
+function wordsArrayLength(array) {
+  return array.reduce((accumulator, word) => accumulator + wordLength(word), 0);
 }
 
 function wordLength(word) {
-  if (word == "\t") return tabLength;
-  return word.length;
+  return word == "\t" ? TAB_LENGTH : word.length;
 }
 
-export { splitToRows };
+export { splitToRows, exceedsLength, wordsArrayLength };
