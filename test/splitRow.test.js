@@ -1,53 +1,68 @@
 import { splitToRows } from "../src/js/splitRow";
 
-test("['word1', 'word2', 'word3'], 7", () => {
+test("['word1', 'word2', 'word3'], 3", () => {
   const textSplitted = ["word1", "word2", "word3"];
-  const result = splitToRows(textSplitted, 7);
-  expect(result.length).toBe(3);
-  expect(result[0]).toBe("word1");
-  expect(result[1]).toBe("word2");
-  expect(result[2]).toBe("word3");
+  const result = splitToRows(textSplitted, 3);
+  const expected = [["word1"], ["word2"], ["word3"]];
+  expect(result).toStrictEqual(expected);
 });
 
-test("['word1', 'word2', 'word3'], 8", () => {
+test("['word1', 'word2', 'word3'], 9", () => {
   const textSplitted = ["word1", "word2", "word3"];
-  const result = splitToRows(textSplitted, 8);
-  expect(result.length).toBe(2);
-  expect(result[0]).toBe("word1 word2");
-  expect(result[1]).toBe("word3");
+  const result = splitToRows(textSplitted, 9);
+  const expected = [["word1"], ["word2"], ["word3"]];
+  expect(result).toStrictEqual(expected);
 });
 
-test("['word1', '\r\n', 'word2', 'word3'], 8", () => {
+test("['word1', 'word2', 'word3'], 10", () => {
+  const textSplitted = ["word1", "word2", "word3"];
+  const result = splitToRows(textSplitted, 10);
+  const expected = [["word1", "word2"], ["word3"]];
+  expect(result).toStrictEqual(expected);
+});
+
+test("['word1', '\\r\\n', 'word2', 'word3'], 10", () => {
   const textSplitted = ["word1", "\r\n", "word2", "word3"];
-  const result = splitToRows(textSplitted, 8);
-  expect(result.length).toBe(2);
-  expect(result[0]).toBe("word1");
-  expect(result[1]).toBe("word2 word3");
+  const result = splitToRows(textSplitted, 10);
+  const expected = [["word1"], ["word2", "word3"]];
+  expect(result).toStrictEqual(expected);
 });
 
-test("['\t', '\t', '\t', 'word1', 'word2'], 8", () => {
+test("['\\t', '\\t', '\\t', 'word1', 'word2'], 10", () => {
   const textSplitted = ["\t", "\t", "\t", "word1", "word2"];
-  const result = splitToRows(textSplitted, 8);
-  expect(result.length).toBe(2);
-  expect(result[0]).toBe("\t \t \t word1");
-  expect(result[1]).toBe("word2");
+  const result = splitToRows(textSplitted, 10);
+  const expected = [
+    ["\t", "\t", "\t"],
+    ["word1", "word2"],
+  ];
+  expect(result).toStrictEqual(expected);
 });
 
-test("['\r\n', '\r\n', 'word1', 'word2', '\r\n'], 8", () => {
+test("['\\r\\n', '\\r\\n', 'word1', 'word2', '\\r\\n'], 8", () => {
   const textSplitted = ["\r\n", "\r\n", "word1", "word2", "\r\n"];
   const result = splitToRows(textSplitted, 8);
-  expect(result.length).toBe(3);
-  expect(result[0]).toBe("");
-  expect(result[1]).toBe("");
-  expect(result[2]).toBe("word1 word2");
+  const expected = [[], [], ["word1"], ["word2"]];
+  expect(result).toStrictEqual(expected);
 });
 
-test("['\r\n', '\r\n', 'word1', 'word2', '\r\n', '\r\n'], 8", () => {
-  const textSplitted = ["\r\n", "\r\n", "word1", "word2", "\r\n", "\r\n"];
+test("['\\r\\n', '\\r\\n', 'word1', 'word2', '\\t', '\\r\\n', '\\r\\n'], 8", () => {
+  const textSplitted = ["\r\n", "\r\n", "word1", "word2", "\t", "\r\n", "\r\n"];
   const result = splitToRows(textSplitted, 8);
-  expect(result.length).toBe(4);
-  expect(result[0]).toBe("");
-  expect(result[1]).toBe("");
-  expect(result[2]).toBe("word1 word2");
-  expect(result[3]).toBe("");
+  const expected = [[], [], ["word1"], ["word2", "\t"], []];
+  expect(result).toStrictEqual(expected);
+});
+
+test("['\\r\\n', 'word1', '\\r\\n', 'word2', '\\t', 'word3', '\\r\\n'], 8", () => {
+  const textSplitted = [
+    "\r\n",
+    "word1",
+    "\r\n",
+    "word2",
+    "\t",
+    "word3",
+    "\r\n",
+  ];
+  const result = splitToRows(textSplitted, 8);
+  const expected = [[], ["word1"], ["word2", "\t"], ["word3"]];
+  expect(result).toStrictEqual(expected);
 });

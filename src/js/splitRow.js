@@ -1,13 +1,12 @@
-const marginRowLength = 2; //for very big words, do not leave unbalanced rows
 const tabLength = 2;
 
-function splitToRows(textSplitted, rowLength) {
+function splitToRows(textSplitted, rowMaxLength) {
   const rows = [];
-  let row = "";
+  let row = [];
   for (let word of textSplitted) {
     if (word == "\r\n") {
       rows.push(row);
-      row = "";
+      row = [];
       continue;
     }
 
@@ -16,19 +15,27 @@ function splitToRows(textSplitted, rowLength) {
       continue;
     }
 
-    if (exceedsLength(row.length, wordLength(word), rowLength)) {
+    if (exceedsLength(rowLength(row), wordLength(word), rowMaxLength)) {
       rows.push(row);
-      row = word;
+      row = [word];
       continue;
     }
-    row = row.concat(" ", word);
+    row.push(word);
   }
   if (row.length != 0) rows.push(row);
   return rows;
 }
 
-function exceedsLength(actualRowLength, wordLength, rowLength) {
-  return actualRowLength + wordLength > rowLength + marginRowLength;
+function exceedsLength(actualRowLength, wordLength, rowMaxLength) {
+  return actualRowLength + wordLength > rowMaxLength;
+}
+
+function rowLength(row) {
+  let length = 0;
+  for (let word of row) {
+    length += wordLength(word);
+  }
+  return length;
 }
 
 function wordLength(word) {
