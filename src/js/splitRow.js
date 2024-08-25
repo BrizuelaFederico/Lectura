@@ -1,4 +1,4 @@
-const tabLength = 2;
+const tabLength = 4;
 
 function splitToRows(textSplitted, rowMaxLength) {
   const rows = [];
