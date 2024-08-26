@@ -1,14 +1,17 @@
 const $screen = document.querySelector("article div");
 
-function showText(text) {
-  console.log($screen);
-  const rows = text.split("\n"); //TODO: rows, sets, words acordding to setting
+function showPage(page) {
   let innerHTML = "";
-  for (let row of rows) {
-    innerHTML = innerHTML.concat("<div><span>" + row + "</span></div>");
+  let text = "";
+
+  for (let row of page) {
+    text = "";
+    for (let sets of row) {
+      text = text.concat(`<span>${sets.join(" ")}</span>`);
+    }
+    innerHTML = innerHTML.concat(`<div>${text}</div>`);
   }
-  console.log(innerHTML);
   $screen.innerHTML = innerHTML;
 }
 
-export { showText };
+export { showPage };

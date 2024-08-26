@@ -1,4 +1,5 @@
-import { showText } from "./readingScreen.js";
+import { showPage } from "./readingScreen.js";
+import { getReading } from "./reading.js";
 
 const $inputFile = document.querySelector("article button input");
 
@@ -11,7 +12,6 @@ function loadFile(file) {
   fileReader.readAsText(file);
   fileReader.addEventListener("load", (event) => {
     const text = event.currentTarget.result;
-    console.log(text);
-    showText(text);
+    showPage(getReading(text)); //TODO pages
   });
 }

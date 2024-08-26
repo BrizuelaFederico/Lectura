@@ -1,12 +1,12 @@
 import { exceedsLength, wordsArrayLength } from "./splitRow.js";
 
-function splitToSets(row, totalSets, setMaxLength) {
+function splitToSets(row, numberSets, setMaxLength) {
   if (row.length == 0) return [];
   const sets = [];
   let set = [];
   let count = 1;
   for (let word of row) {
-    if (totalSets == count) {
+    if (numberSets == count) {
       set.push(word);
       continue;
     }
