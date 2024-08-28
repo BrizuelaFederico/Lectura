@@ -32,11 +32,26 @@ class ReadingController {
     }
   }
 
-  goPreviousRow() {
+  goPreviousRow(endSet = false) {
     if (readingScreen.hasPreviousRow()) {
       readingScreen.goPreviousRow();
     } else {
-      this.goPreviousPage(true);
+      this.goPreviousPage(endSet);
+    }
+  }
+
+  goNextSet() {
+    if (readingScreen.hasNextSet()) {
+      readingScreen.goNextSet();
+    } else {
+      this.goNextRow();
+    }
+  }
+  goPreviousSet() {
+    if (readingScreen.hasPreviousSet()) {
+      readingScreen.goPreviousSet();
+    } else {
+      this.goPreviousRow(true);
     }
   }
 }

@@ -6,6 +6,8 @@ const $nextPage = $("nextPage");
 const $previousPage = $("previousPage");
 const $nextRow = $("nextRow");
 const $previousRow = $("previousRow");
+const $nextSet = $("nextSet");
+const $previousSet = $("previousSet");
 
 $nextPage.addEventListener("click", () => {
   readingController.goNextPage();
@@ -18,4 +20,10 @@ $nextRow.addEventListener("click", () => {
 });
 $previousRow.addEventListener("click", () => {
   readingController.goPreviousRow();
+});
+$nextSet.addEventListener("click", () => {
+  readingController.goNextSet();
+});
+$previousSet.addEventListener("click", () => {
+  readingController.goPreviousSet();
 });

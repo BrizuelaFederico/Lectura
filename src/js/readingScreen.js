@@ -3,7 +3,8 @@ const $fileName = document.querySelector("article p");
 
 class ReadingScreen {
   constructor() {
-    this.actualRow = null;
+    this.$actualRow = null;
+    this.$actualSet = null;
   }
 
   showPage(page, goLastIndex) {
@@ -20,9 +21,13 @@ class ReadingScreen {
     $screen.innerHTML = innerHTML;
 
     if (goLastIndex) {
-      this.actualRow = $screen.lastElementChild;
+      this.$actualRow = $screen.lastElementChild;
+      this.$actualSet = this.$actualRow.lastElementChild;
+      console.log(this.$actualSet);
     } else {
-      this.actualRow = $screen.firstElementChild;
+      this.$actualRow = $screen.firstElementChild;
+      this.$actualSet = this.$actualRow.firstElementChild;
+      console.log(this.$actualSet);
     }
   }
 
@@ -31,21 +36,55 @@ class ReadingScreen {
   }
 
   hasNextRow() {
-    return this.actualRow.nextElementSibling;
+    return this.$actualRow.nextElementSibling;
   }
 
   goNextRow() {
-    this.actualRow = this.actualRow.nextElementSibling || this.actualRow;
-    console.log(this.actualRow); //TODO: delete, test only
+    if (this.hasNextRow()) {
+      this.$actualRow = this.$actualRow.nextElementSibling;
+      this.$actualSet = this.$actualRow.firstElementChild;
+    }
   }
 
   hasPreviousRow() {
-    return this.actualRow.previousElementSibling;
+    return this.$actualRow.previousElementSibling;
   }
 
-  goPreviousRow() {
-    this.actualRow = this.actualRow.previousElementSibling || this.actualRow;
-    console.log(this.actualRow); //TODO: delete, test only
+  goPreviousRow(endSet = false) {
+    if (this.hasPreviousRow()) {
+      this.$actualRow = this.$actualRow.previousElementSibling;
+      if (endSet) {
+        this.$actualSet = this.$actualRow.lastElementChild;
+      } else {
+        this.$actualSet = this.$actualRow.firstElementChild;
+      }
+    }
+  }
+
+  hasNextSet() {
+    return this.$actualSet.nextElementSibling;
+  }
+
+  goNextSet() {
+    if (this.hasNextSet()) {
+      this.$actualSet = this.$actualSet.nextElementSibling;
+      console.log(this.$actualSet);
+    } else {
+      this.goNextRow();
+    }
+  }
+
+  hasPreviousSet() {
+    return this.$actualSet.previousElementSibling;
+  }
+
+  goPreviousSet() {
+    if (this.hasPreviousSet()) {
+      this.$actualSet = this.$actualSet.previousElementSibling;
+      console.log(this.$actualSet);
+    } else {
+      this.goPreviousRow(true);
+    }
   }
 }
 
