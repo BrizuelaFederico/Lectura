@@ -9,9 +9,9 @@ class ReadingController {
     readingScreen.showFileName(fileName);
   }
 
-  goPage(indexPage) {
+  goPage(indexPage, goLastIndex = false) {
     reading.setIndex(indexPage, 0, 0);
-    readingScreen.showPage(reading.getPage());
+    readingScreen.showPage(reading.getPage(), goLastIndex);
   }
 
   goNextPage() {
@@ -19,9 +19,25 @@ class ReadingController {
     this.goPage(reading.getIndex().page + 1);
   }
 
-  goPreviousPage() {
+  goPreviousPage(goLastIndex = false) {
     if (!reading.hasPreviousPage()) return;
-    this.goPage(reading.getIndex().page - 1);
+    this.goPage(reading.getIndex().page - 1, goLastIndex);
+  }
+
+  goNextRow() {
+    if (readingScreen.hasNextRow()) {
+      readingScreen.goNextRow();
+    } else {
+      this.goNextPage();
+    }
+  }
+
+  goPreviousRow() {
+    if (readingScreen.hasPreviousRow()) {
+      readingScreen.goPreviousRow();
+    } else {
+      this.goPreviousPage(true);
+    }
   }
 }
 

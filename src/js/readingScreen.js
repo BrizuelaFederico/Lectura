@@ -2,7 +2,11 @@ const $screen = document.querySelector("article div");
 const $fileName = document.querySelector("article p");
 
 class ReadingScreen {
-  showPage(page) {
+  constructor() {
+    this.actualRow = null;
+  }
+
+  showPage(page, goLastIndex) {
     let innerHTML = "";
     let text = "";
 
@@ -14,10 +18,34 @@ class ReadingScreen {
       innerHTML = innerHTML.concat(`<div>${text}</div>`);
     }
     $screen.innerHTML = innerHTML;
+
+    if (goLastIndex) {
+      this.actualRow = $screen.lastElementChild;
+    } else {
+      this.actualRow = $screen.firstElementChild;
+    }
   }
 
   showFileName(name) {
     $fileName.innerHTML = name;
+  }
+
+  hasNextRow() {
+    return this.actualRow.nextElementSibling;
+  }
+
+  goNextRow() {
+    this.actualRow = this.actualRow.nextElementSibling || this.actualRow;
+    console.log(this.actualRow); //TODO: delete, test only
+  }
+
+  hasPreviousRow() {
+    return this.actualRow.previousElementSibling;
+  }
+
+  goPreviousRow() {
+    this.actualRow = this.actualRow.previousElementSibling || this.actualRow;
+    console.log(this.actualRow); //TODO: delete, test only
   }
 }
 
