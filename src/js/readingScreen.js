@@ -1,17 +1,26 @@
 const $screen = document.querySelector("article div");
+const $fileName = document.querySelector("article p");
 
-function showPage(page) {
-  let innerHTML = "";
-  let text = "";
+class ReadingScreen {
+  showPage(page) {
+    let innerHTML = "";
+    let text = "";
 
-  for (let row of page) {
-    text = "";
-    for (let sets of row) {
-      text = text.concat(`<span>${sets.join(" ")}</span>`);
+    for (let row of page) {
+      text = "";
+      for (let sets of row) {
+        text = text.concat(`<span>${sets.join(" ")}</span>`);
+      }
+      innerHTML = innerHTML.concat(`<div>${text}</div>`);
     }
-    innerHTML = innerHTML.concat(`<div>${text}</div>`);
+    $screen.innerHTML = innerHTML;
   }
-  $screen.innerHTML = innerHTML;
+
+  showFileName(name) {
+    $fileName.innerHTML = name;
+  }
 }
 
-export { showPage };
+const readingScreen = new ReadingScreen();
+
+export { readingScreen };
