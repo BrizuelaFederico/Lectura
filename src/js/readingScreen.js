@@ -7,10 +7,9 @@ class ReadingScreen {
     this.$actualSet = null;
   }
 
-  showPage(page, goLastIndex) {
+  showPage(page, endRow = false, endSet = false) {
     let innerHTML = "";
     let text = "";
-
     for (let row of page) {
       text = "";
       for (let sets of row) {
@@ -19,15 +18,20 @@ class ReadingScreen {
       innerHTML = innerHTML.concat(`<div>${text}</div>`);
     }
     $screen.innerHTML = innerHTML;
+    this.getRowSet(endRow, endSet);
+  }
 
-    if (goLastIndex) {
+  getRowSet(endRow, endSet) {
+    if (endRow) {
       this.$actualRow = $screen.lastElementChild;
-      this.$actualSet = this.$actualRow.lastElementChild;
-      console.log(this.$actualSet);
     } else {
       this.$actualRow = $screen.firstElementChild;
+    }
+
+    if (endSet) {
+      this.$actualSet = this.$actualRow.lastElementChild;
+    } else {
       this.$actualSet = this.$actualRow.firstElementChild;
-      console.log(this.$actualSet);
     }
   }
 
@@ -35,56 +39,42 @@ class ReadingScreen {
     $fileName.innerHTML = name;
   }
 
-  hasNextRow() {
-    return this.$actualRow.nextElementSibling;
-  }
-
   goNextRow() {
-    if (this.hasNextRow()) {
-      this.$actualRow = this.$actualRow.nextElementSibling;
-      this.$actualSet = this.$actualRow.firstElementChild;
-    }
-  }
-
-  hasPreviousRow() {
-    return this.$actualRow.previousElementSibling;
+    const $nextRow = this.$actualRow.nextElementSibling;
+    if (!$nextRow) return false;
+    this.$actualRow = $nextRow;
+    this.$actualSet = this.$actualRow.firstElementChild;
+    return true;
   }
 
   goPreviousRow(endSet = false) {
-    if (this.hasPreviousRow()) {
-      this.$actualRow = this.$actualRow.previousElementSibling;
-      if (endSet) {
-        this.$actualSet = this.$actualRow.lastElementChild;
-      } else {
-        this.$actualSet = this.$actualRow.firstElementChild;
-      }
+    const $previousRow = this.$actualRow.previousElementSibling;
+    if (!$previousRow) return false;
+    this.$actualRow = $previousRow;
+    if (endSet) {
+      this.$actualSet = this.$actualRow.lastElementChild;
+    } else {
+      this.$actualSet = this.$actualRow.firstElementChild;
     }
-  }
-
-  hasNextSet() {
-    return this.$actualSet.nextElementSibling;
+    return true;
   }
 
   goNextSet() {
-    if (this.hasNextSet()) {
-      this.$actualSet = this.$actualSet.nextElementSibling;
-      console.log(this.$actualSet);
-    } else {
-      this.goNextRow();
+    const $nextSet = this.$actualSet.nextElementSibling;
+    if ($nextSet) {
+      this.$actualSet = $nextSet;
+      return true;
     }
-  }
-
-  hasPreviousSet() {
-    return this.$actualSet.previousElementSibling;
+    return this.goNextRow();
   }
 
   goPreviousSet() {
-    if (this.hasPreviousSet()) {
-      this.$actualSet = this.$actualSet.previousElementSibling;
-      console.log(this.$actualSet);
-    } else {
-      this.goPreviousRow(true);
+    const $previousSet = this.$actualSet.previousElementSibling;
+    if ($previousSet) {
+      this.$actualSet = $previousSet;
+      return true;
     }
+    return this.goPreviousRow(true);
   }
 }
 

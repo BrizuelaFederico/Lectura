@@ -5,32 +5,28 @@ import { splitToPages } from "./splitPage.js";
 
 const WORD_LENGTH = 4; //1 word = 4 letter
 const MARGIN_SET_LENGTH = 1.2; //This is to try to keep the same amount of words in each set.
-const getValue = (elem) => parseInt(document.getElementById(elem).value);
 
 class Reading {
   constructor() {
+    this.textSplitted = [];
     this.pages = [];
     this.pageSize = 0;
-    this.index = {
-      page: 0,
-      row: 0,
-      set: 0,
-    };
+    this.pageIndex = 0;
     this.fileName = "";
   }
 
-  newReading(fileName, text) {
-    this.pages = this.#getReading(text);
+  newReading(fileName, text, settings) {
+    this.textSplitted = splitText(text);
+    this.pages = this.getReading(this.textSplitted, settings);
     this.pageSize = this.pages.length;
     this.fileName = fileName;
-    this.setIndex(0, 0, 0);
+    this.pageIndex = 0;
   }
 
-  #getReading(text) {
-    const numberRows = getValue("row");
-    const numberSets = getValue("set");
-    const numberWordSets = getValue("setWord");
-    const textSplitted = splitText(text);
+  getReading(textSplitted, settings) {
+    const numberRows = settings.rows;
+    const numberSets = settings.sets;
+    const numberWordSets = settings.wordsSet;
     //TODO line break and tab options
     const rows = splitToRows(
       textSplitted,
@@ -46,26 +42,32 @@ class Reading {
     return splitToPages(rowsWordSet, numberRows);
   }
 
-  getIndex() {
-    return this.index;
+  getPageIndex() {
+    return this.pageIndex;
   }
 
-  setIndex(pageNumber, rowNumber, setNumber) {
-    this.index.page = pageNumber;
-    this.index.row = rowNumber;
-    this.index.set = setNumber;
+  setPageIndex(newPageIndex) {
+    if (newPageIndex < 0) {
+      this.pageIndex = 0;
+      return;
+    }
+    if (newPageIndex > this.pageSize - 1) {
+      this.pageIndex = this.pageSize - 1;
+      return;
+    }
+    this.pageIndex = newPageIndex;
   }
 
-  getPage(pageNumber = this.index.page) {
+  getPage(pageNumber = this.pageIndex) {
     return this.pages[pageNumber];
   }
 
-  hasNextPage(indexPage = this.index.page) {
-    return indexPage < this.pageSize - 1;
+  hasNextPage(pageIndex = this.pageIndex) {
+    return pageIndex < this.pageSize - 1;
   }
 
-  hasPreviousPage(indexPage = this.index.page) {
-    return indexPage > 0;
+  hasPreviousPage(pageIndex = this.pageIndex) {
+    return pageIndex > 0;
   }
 }
 const reading = new Reading();

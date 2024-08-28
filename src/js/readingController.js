@@ -1,58 +1,60 @@
 import { reading } from "./reading.js";
 import { readingScreen } from "./readingScreen.js";
 
+const getValue = (elem) => parseInt(document.getElementById(elem).value);
+
 class ReadingController {
   loadReading(fileName, text) {
-    reading.newReading(fileName, text);
+    reading.newReading(fileName, text, this.getSettings());
     //TODO load index and all settings
     readingScreen.showPage(reading.getPage());
     readingScreen.showFileName(fileName);
   }
 
-  goPage(indexPage, goLastIndex = false) {
-    reading.setIndex(indexPage, 0, 0);
-    readingScreen.showPage(reading.getPage(), goLastIndex);
+  getSettings() {
+    return {
+      rows: getValue("row"),
+      sets: getValue("set"),
+      wordsSet: getValue("wordSet"),
+      lineBreakTab: document.getElementById("lineBreakTab").checked,
+    };
+  }
+
+  goPage(pageIndex, endRow = false, endSet = false) {
+    reading.setPageIndex(pageIndex);
+    readingScreen.showPage(reading.getPage(), endRow, endSet);
   }
 
   goNextPage() {
-    if (!reading.hasNextPage()) return;
-    this.goPage(reading.getIndex().page + 1);
+    if (!reading.hasNextPage()) return false;
+    this.goPage(reading.getPageIndex() + 1);
+    return true;
   }
 
-  goPreviousPage(goLastIndex = false) {
-    if (!reading.hasPreviousPage()) return;
-    this.goPage(reading.getIndex().page - 1, goLastIndex);
+  goPreviousPage(endRow = false, endSet = false) {
+    if (!reading.hasPreviousPage()) return false;
+    this.goPage(reading.getPageIndex() - 1, endRow, endSet);
+    return true;
   }
 
   goNextRow() {
-    if (readingScreen.hasNextRow()) {
-      readingScreen.goNextRow();
-    } else {
-      this.goNextPage();
-    }
+    if (!readingScreen.goNextRow()) return this.goNextPage();
+    return true;
   }
 
   goPreviousRow(endSet = false) {
-    if (readingScreen.hasPreviousRow()) {
-      readingScreen.goPreviousRow();
-    } else {
-      this.goPreviousPage(endSet);
-    }
+    if (!readingScreen.goPreviousRow())
+      return this.goPreviousPage(true, endSet);
+    return true;
   }
 
   goNextSet() {
-    if (readingScreen.hasNextSet()) {
-      readingScreen.goNextSet();
-    } else {
-      this.goNextRow();
-    }
+    if (!readingScreen.goNextSet()) return this.goNextRow();
+    return true;
   }
   goPreviousSet() {
-    if (readingScreen.hasPreviousSet()) {
-      readingScreen.goPreviousSet();
-    } else {
-      this.goPreviousRow(true);
-    }
+    if (!readingScreen.goPreviousSet()) return this.goPreviousRow(true);
+    return true;
   }
 }
 

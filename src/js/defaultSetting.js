@@ -21,7 +21,7 @@ const defaultSetting = {
   ppmIncreasePage: "2",
   row: "3",
   set: "3",
-  setWord: "3",
+  wordSet: "3",
 };
 
 export { defaultSetting };
