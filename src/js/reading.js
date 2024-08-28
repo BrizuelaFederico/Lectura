@@ -10,6 +10,7 @@ const getValue = (elem) => parseInt(document.getElementById(elem).value);
 class Reading {
   constructor() {
     this.pages = [];
+    this.pageSize = 0;
     this.index = {
       page: 0,
       row: 0,
@@ -20,18 +21,9 @@ class Reading {
 
   newReading(fileName, text) {
     this.pages = this.#getReading(text);
+    this.pageSize = this.pages.length;
     this.fileName = fileName;
     this.setIndex(0, 0, 0);
-  }
-
-  setIndex(pageNumber, rowNumber, setNumber) {
-    this.index.page = pageNumber;
-    this.index.row = rowNumber;
-    this.index.set = setNumber;
-  }
-
-  getPage(pageNumber = this.index.page) {
-    return this.pages[pageNumber];
   }
 
   #getReading(text) {
@@ -52,6 +44,28 @@ class Reading {
       )
     );
     return splitToPages(rowsWordSet, numberRows);
+  }
+
+  getIndex() {
+    return this.index;
+  }
+
+  setIndex(pageNumber, rowNumber, setNumber) {
+    this.index.page = pageNumber;
+    this.index.row = rowNumber;
+    this.index.set = setNumber;
+  }
+
+  getPage(pageNumber = this.index.page) {
+    return this.pages[pageNumber];
+  }
+
+  hasNextPage(indexPage = this.index.page) {
+    return indexPage < this.pageSize - 1;
+  }
+
+  hasPreviousPage(indexPage = this.index.page) {
+    return indexPage > 0;
   }
 }
 const reading = new Reading();
