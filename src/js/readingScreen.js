@@ -13,8 +13,9 @@ class ReadingScreen {
     for (let row of page) {
       text = "";
       for (let sets of row) {
-        text = text.concat(`<span>${sets.join(" ")}</span>`);
+        text = text.concat(`<pre>${sets.join(" ")}</pre>`);
       }
+      if (text == "") text = "<pre class=lineBreak>_</pre>";
       innerHTML = innerHTML.concat(`<div>${text}</div>`);
     }
     $screen.innerHTML = innerHTML;
@@ -33,6 +34,7 @@ class ReadingScreen {
     } else {
       this.$actualSet = this.$actualRow.firstElementChild;
     }
+    this.$actualSet.classList.add("selected");
   }
 
   showFileName(name) {
@@ -43,7 +45,9 @@ class ReadingScreen {
     const $nextRow = this.$actualRow.nextElementSibling;
     if (!$nextRow) return false;
     this.$actualRow = $nextRow;
+    this.$actualSet.classList.remove("selected");
     this.$actualSet = this.$actualRow.firstElementChild;
+    this.$actualSet.classList.add("selected");
     return true;
   }
 
@@ -51,18 +55,22 @@ class ReadingScreen {
     const $previousRow = this.$actualRow.previousElementSibling;
     if (!$previousRow) return false;
     this.$actualRow = $previousRow;
+    this.$actualSet.classList.remove("selected");
     if (endSet) {
       this.$actualSet = this.$actualRow.lastElementChild;
     } else {
       this.$actualSet = this.$actualRow.firstElementChild;
     }
+    this.$actualSet.classList.add("selected");
     return true;
   }
 
   goNextSet() {
     const $nextSet = this.$actualSet.nextElementSibling;
     if ($nextSet) {
+      this.$actualSet.classList.remove("selected");
       this.$actualSet = $nextSet;
+      this.$actualSet.classList.add("selected");
       return true;
     }
     return this.goNextRow();
@@ -71,7 +79,9 @@ class ReadingScreen {
   goPreviousSet() {
     const $previousSet = this.$actualSet.previousElementSibling;
     if ($previousSet) {
+      this.$actualSet.classList.remove("selected");
       this.$actualSet = $previousSet;
+      this.$actualSet.classList.add("selected");
       return true;
     }
     return this.goPreviousRow(true);
