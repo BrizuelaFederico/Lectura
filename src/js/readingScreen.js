@@ -1,5 +1,7 @@
-const $screen = document.querySelector("article div");
+const $screen = document.querySelector(".reading");
 const $fileName = document.querySelector("article p");
+const $fullscreen = document.querySelector(".fullscreen");
+const $fullscreenButton = document.getElementById("fullscreen");
 
 class ReadingScreen {
   constructor() {
@@ -85,6 +87,20 @@ class ReadingScreen {
       return true;
     }
     return this.goPreviousRow(true);
+  }
+}
+
+$fullscreenButton.addEventListener("click", (event) => {
+  toggleFullScreen();
+});
+
+function toggleFullScreen() {
+  if (!document.fullscreenElement) {
+    $fullscreen.requestFullscreen();
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
   }
 }
 
