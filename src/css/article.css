@@ -5,7 +5,7 @@ article {
   align-items: center;
   padding: 15px 5px;
 
-  button {
+  .fileUploadButton {
     display: flex;
     position: relative;
     justify-content: center;
@@ -83,6 +83,34 @@ article {
         &.lineBreak {
           color: var(--backgroundColor);
         }
+      }
+    }
+
+    &.readingButton {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 8px 0px;
+
+      div {
+        display: flex;
+        flex-wrap: wrap;
+        min-width: min-content;
+      }
+    }
+    .previousButton {
+      background-color: transparent;
+      transition: transform 0.1s;
+      border: none;
+      &:active {
+        transform: translate(-10px, 0px);
+      }
+    }
+    .nextButton {
+      background-color: transparent;
+      transition: transform 0.1s;
+      border: none;
+      &:active {
+        transform: translate(10px, 0px);
       }
     }
   }
