@@ -17,7 +17,7 @@ class ReadingScreen {
       for (let sets of row) {
         text = text.concat(`<pre>${sets.join(" ")}</pre>`);
       }
-      if (text == "") text = "<pre class=lineBreak>_</pre>";
+      if (text == "") text = "<pre class=line-break>_</pre>";
       innerHTML = innerHTML.concat(`<div>${text}</div>`);
     }
     $screen.innerHTML = innerHTML;
