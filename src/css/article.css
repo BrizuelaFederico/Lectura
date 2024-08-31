@@ -83,25 +83,27 @@ article {
   align-items: center;
   align-self: flex-start;
   background-color: #474343;
-  padding: 0px;
-  width: 97vw;
+  width: 100%;
+  overflow: auto;
+  scrollbar-width: none;
 }
 
 .reading {
   background-color: var(--backgroundColor);
   padding-left: var(--marginLeft);
   padding-top: var(--marginTop);
-  padding-bottom: 40px;
+  padding-bottom: 3dvh;
   font-size: var(--letterSize);
   font-weight: var(--bold);
   color: var(--letterColor);
-  border-bottom: 5px solid #000000;
+  border: 2px solid #f3dddd;
   cursor: pointer;
-  min-width: 100%;
-  max-width: 100%;
+  max-width: 99%;
   min-height: 50px;
-  max-height: 70dvh;
+  max-height: 100dvh;
   overflow: auto;
+  scrollbar-color: #e9dada #000000;
+  scrollbar-width: thin;
 
   div {
     margin-bottom: var(--marginRow);
