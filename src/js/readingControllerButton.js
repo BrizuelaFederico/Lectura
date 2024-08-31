@@ -9,6 +9,17 @@ const $previousRow = $("previousRow");
 const $nextSet = $("nextSet");
 const $previousSet = $("previousSet");
 
+globalThis.window.addEventListener("keydown", (event) => {
+  switch (event.key) {
+    case "ArrowLeft":
+      $previousPage.click();
+      break;
+    case "ArrowRight":
+      $nextPage.click();
+      break;
+  }
+});
+
 $nextPage.addEventListener("click", () => {
   readingController.goNextPage();
 });
