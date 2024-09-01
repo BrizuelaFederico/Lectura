@@ -1,5 +1,6 @@
 import { reading } from "./reading.js";
 import { readingScreen } from "./readingScreen.js";
+import { updateReadingData } from "./readingData.js";
 
 const getValue = (elem) => parseInt(document.getElementById(elem).value);
 
@@ -9,6 +10,7 @@ class ReadingController {
     //TODO load index and all settings
     readingScreen.showPage(reading.getPage());
     readingScreen.showFileName(fileName);
+    updateReadingData(reading.getPageSize(), reading.getPageIndex());
   }
 
   getSettings() {
@@ -23,6 +25,7 @@ class ReadingController {
   goPage(pageIndex, endRow = false, endSet = false) {
     reading.setPageIndex(pageIndex);
     readingScreen.showPage(reading.getPage(), endRow, endSet);
+    updateReadingData(reading.getPageSize(), reading.getPageIndex());
   }
 
   goNextPage() {

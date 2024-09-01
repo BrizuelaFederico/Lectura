@@ -58,6 +58,10 @@ class Reading {
     this.pageIndex = newPageIndex;
   }
 
+  getPageSize() {
+    return this.pageSize;
+  }
+
   getPage(pageNumber = this.pageIndex) {
     return this.pages[pageNumber];
   }
