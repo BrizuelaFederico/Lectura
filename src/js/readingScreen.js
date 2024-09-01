@@ -17,8 +17,11 @@ class ReadingScreen {
       for (let sets of row) {
         text = text.concat(`<pre>${sets.join(" ")}</pre>`);
       }
-      if (text == "") text = "<pre class=line-break>_</pre>";
-      innerHTML = innerHTML.concat(`<div>${text}</div>`);
+      if (text == "")
+        innerHTML = innerHTML.concat(
+          "<div class=line-break><pre>_</pre></div>"
+        );
+      else innerHTML = innerHTML.concat(`<div>${text}</div>`);
     }
     $screen.innerHTML = innerHTML;
     this.getRowSet(endRow, endSet);
@@ -44,35 +47,43 @@ class ReadingScreen {
   }
 
   goNextRow() {
-    const $nextRow = this.$actualRow.nextElementSibling;
+    const $nextRow = this.getNextRow(this.$actualRow);
     if (!$nextRow) return false;
     this.$actualRow = $nextRow;
-    this.$actualSet.classList.remove("selected");
-    this.$actualSet = this.$actualRow.firstElementChild;
-    this.$actualSet.classList.add("selected");
+    let $newSet = this.$actualRow.firstElementChild;
+    this.addRemoveSelectedClass($newSet, this.$actualSet);
+    this.$actualSet = $newSet;
     return true;
+  }
+
+  getNextRow($row) {
+    const $nextRow = $row.nextElementSibling;
+    if (!$nextRow) return false;
+    if ($nextRow.classList.contains("line-break"))
+      return this.getNextRow($nextRow);
+    return $nextRow;
   }
 
   goPreviousRow(endSet = false) {
     const $previousRow = this.$actualRow.previousElementSibling;
     if (!$previousRow) return false;
     this.$actualRow = $previousRow;
-    this.$actualSet.classList.remove("selected");
+    let $newSet = null;
     if (endSet) {
-      this.$actualSet = this.$actualRow.lastElementChild;
+      $newSet = this.$actualRow.lastElementChild;
     } else {
-      this.$actualSet = this.$actualRow.firstElementChild;
+      $newSet = this.$actualRow.firstElementChild;
     }
-    this.$actualSet.classList.add("selected");
+    this.addRemoveSelectedClass($newSet, this.$actualSet);
+    this.$actualSet = $newSet;
     return true;
   }
 
   goNextSet() {
     const $nextSet = this.$actualSet.nextElementSibling;
     if ($nextSet) {
-      this.$actualSet.classList.remove("selected");
+      this.addRemoveSelectedClass($nextSet, this.$actualSet);
       this.$actualSet = $nextSet;
-      this.$actualSet.classList.add("selected");
       return true;
     }
     return this.goNextRow();
@@ -81,12 +92,16 @@ class ReadingScreen {
   goPreviousSet() {
     const $previousSet = this.$actualSet.previousElementSibling;
     if ($previousSet) {
-      this.$actualSet.classList.remove("selected");
+      this.addRemoveSelectedClass($previousSet, this.$actualSet);
       this.$actualSet = $previousSet;
-      this.$actualSet.classList.add("selected");
       return true;
     }
     return this.goPreviousRow(true);
+  }
+
+  addRemoveSelectedClass(newSet, oldSet) {
+    oldSet.classList.remove("selected");
+    newSet.classList.add("selected");
   }
 }
 
