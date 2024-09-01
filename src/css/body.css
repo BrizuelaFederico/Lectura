@@ -5,3 +5,59 @@ body {
   min-height: 100dvh;
   max-width: 100vw;
 }
+
+dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  z-index: 10;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 30px;
+  background: linear-gradient(to bottom, #ffd67d, #ffe08b);
+  font-size: var(--letterSize);
+
+  &[open] {
+    transition: opacity 1s;
+    opacity: 0;
+  }
+
+  &[open]:hover {
+    opacity: 1;
+  }
+
+  &[open]::backdrop {
+    background-color: #000000;
+    transition: opacity 1s;
+    opacity: 0;
+  }
+
+  &[open]:hover::backdrop {
+    opacity: 0.7;
+  }
+
+  input {
+    margin-left: 4px;
+
+    &[type="number"] {
+      background: transparent;
+      max-width: 100px;
+      border-bottom: #000000;
+      border-top: transparent;
+      border-left: transparent;
+      border-right: transparent;
+      border-width: 2px;
+      border-style: solid;
+      text-align: center;
+      font-size: var(--letterSize);
+    }
+  }
+}
+
+.div-dialog-button {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 30px;
+}

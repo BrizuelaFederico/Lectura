@@ -171,6 +171,26 @@
         </div>
         <div class="flex-wrap-column align-content-center">
           <div class="align-self-center">
+            <button id="openSetPageDialog" class="reading-button scale-button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-map-pin"
+                width="44"
+                height="44"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#ffffff"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                <path
+                  d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"
+                />
+              </svg>
+            </button>
             <button id="fullscreen" class="reading-button scale-button">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -330,6 +350,60 @@
         </p>
       </div>
     </article>
+
+    <dialog id="setPageDialog">
+      <div class="flex-wrap-column">
+        <label
+          >Página: <input type="number" min="0" id="letterSize" /> (hasta
+          <b></b>)</label
+        >
+        <div class="div-dialog-button">
+          <button
+            onclick="document.querySelector('dialog').close()"
+            class="reading-button scale-button"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-square-rounded-x"
+              width="44"
+              height="44"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#ff2825"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M10 10l4 4m0 -4l-4 4" />
+              <path
+                d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"
+              />
+            </svg>
+          </button>
+          <button id="setPageDialogButton" class="reading-button scale-button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-square-rounded-check"
+              width="44"
+              height="44"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#00b341"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M9 12l2 2l4 -4" />
+              <path
+                d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </dialog>
 
     <script src="./js/setting.js" type="module"></script>
     <script src="./js/loadFile.js" type="module"></script>
