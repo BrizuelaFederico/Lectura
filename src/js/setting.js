@@ -22,10 +22,6 @@ function cssRootEvent(id, value) {
     case "letterColor":
       $cssRoot.style.setProperty("--letterColor", value);
       break;
-    case "lineBreakTab":
-      aux = value ? "0" : "1";
-      $cssRoot.style.setProperty("--lineBreakTab", aux);
-      break;
     case "backgroundColor":
       $cssRoot.style.setProperty("--backgroundColor", value);
       break;

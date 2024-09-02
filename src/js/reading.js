@@ -27,9 +27,15 @@ class Reading {
     const numberRows = settings.rows;
     const numberSets = settings.sets;
     const numberWordSets = settings.wordsSet;
-    //TODO line break and tab options
+    const lineBreakTab = settings.lineBreakTab;
+    let _textSplitted = textSplitted;
+    if (!lineBreakTab)
+      _textSplitted = _textSplitted.filter(
+        (word) => word != "\r\n" && word != "\t"
+      );
+
     const rows = splitToRows(
-      textSplitted,
+      _textSplitted,
       numberSets * numberWordSets * WORD_LENGTH
     );
     const rowsWordSet = rows.map((row) =>
