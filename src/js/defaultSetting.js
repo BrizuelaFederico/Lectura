@@ -3,7 +3,6 @@ const defaultSetting = {
   bold: "false",
   typography: "Send Flowers",
   letterColor: "#efe6e6",
-  lineBreakTab: "true",
   backgroundColor: "#474343",
   marginRow: "10",
   marginSet: "4",
@@ -22,6 +21,7 @@ const defaultSetting = {
   row: "8",
   set: "3",
   wordSet: "6",
+  lineBreakTab: "true",
 };
 
 export { defaultSetting };

@@ -70,23 +70,9 @@
           >
           <label>Color Borde<input type="color" id="borderColor" /></label>
         </div>
-        <div class="flex-setting-item">
-          <label>P.P.M Inicial<input type="number" id="initialPPM" /></label>
-          <label>P.P.M Final<input type="number" id="finalPPM" /></label>
-          <label>P.P.M Aumento<input type="number" id="increasePPM" /></label>
-          <label
-            >Aumento tras<input
-              type="number"
-              id="increasePagePPM"
-            />páginas</label
-          >
-          <label>Filas<input type="number" id="row" /></label>
-          <label>Sets<input type="number" id="set" /></label>
-          <label>Palabras Sets<input type="number" id="wordSet" /></label>
-          <label
-            >Salto Línea y Tabulación<input type="checkbox" id="lineBreakTab"
-          /></label>
-        </div>
+        <button id="readingSettingsButton" class="reading-settings-button">
+          Velocidad / Estructura &#9660;
+        </button>
       </div>
       <div class="flex-buttons">
         <button class="load-button">
@@ -402,10 +388,78 @@
         </div>
       </div>
     </dialog>
+    <dialog id="readingSetting">
+      <div class="readingSetting">
+        <label>P.P.M Inicial<input type="number" id="initialPPM" /></label>
+        <label>P.P.M Final<input type="number" id="finalPPM" /></label>
+        <label>P.P.M Aumento<input type="number" id="increasePPM" /></label>
+        <label
+          >Aumento tras<input
+            type="number"
+            id="increasePagePPM"
+          />páginas</label
+        >
+        <label>Filas<input type="number" id="row" /></label>
+        <label>Sets<input type="number" id="set" /></label>
+        <label>Palabras Sets<input type="number" id="wordSet" /></label>
+        <label
+          >Salto Línea y Tabulación<input type="checkbox" id="lineBreakTab"
+        /></label>
+      </div>
+      <div class="div-dialog-button">
+        <button
+          id="readingSettingsCancelButton"
+          class="reading-button scale-button"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-square-rounded-x"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#ff2825"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M10 10l4 4m0 -4l-4 4" />
+            <path
+              d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"
+            />
+          </svg>
+        </button>
+        <button
+          id="readingSettingsApplyButton"
+          class="reading-button scale-button"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-square-rounded-check"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#00b341"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M9 12l2 2l4 -4" />
+            <path
+              d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"
+            />
+          </svg>
+        </button>
+      </div>
+    </dialog>
 
     <script src="./js/setting.js" type="module"></script>
     <script src="./js/loadFile.js" type="module"></script>
     <script src="./js/readingControllerButton.js" type="module"></script>
     <script src="./js/automaticReading.js" type="module"></script>
+    <script src="./js/readingSetting.js" type="module"></script>
   </body>
 </html>

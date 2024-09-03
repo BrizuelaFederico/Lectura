@@ -22,6 +22,12 @@ class ReadingController {
     };
   }
 
+  updateReading() {
+    reading.updateReading(this.getSettings());
+    readingScreen.showPage(reading.getPage());
+    updateReadingData(reading.getPageSize(), reading.getPageIndex());
+  }
+
   goPage(pageIndex, endRow = false, endSet = false) {
     reading.setPageIndex(pageIndex);
     readingScreen.showPage(reading.getPage(), endRow, endSet);

@@ -48,6 +48,12 @@ class Reading {
     return splitToPages(rowsWordSet, numberRows);
   }
 
+  updateReading(settings) {
+    this.pages = this.getReading(this.textSplitted, settings);
+    this.pageSize = this.pages.length;
+    this.pageIndex = 0; //TODO: be located in the same place
+  }
+
   getPageIndex() {
     return this.pageIndex;
   }
