@@ -13,14 +13,16 @@ class Reading {
     this.pageSize = 0;
     this.pageIndex = 0;
     this.fileName = "";
+    this.setting = null;
   }
 
-  newReading(fileName, text, settings) {
+  newReading(fileName, text, setting) {
     this.textSplitted = splitText(text);
-    this.pages = this.getReading(this.textSplitted, settings);
+    this.pages = this.getReading(this.textSplitted, setting);
     this.pageSize = this.pages.length;
     this.fileName = fileName;
     this.pageIndex = 0;
+    this.setting = setting;
   }
 
   getReading(textSplitted, settings) {
@@ -48,10 +50,78 @@ class Reading {
     return splitToPages(rowsWordSet, numberRows);
   }
 
-  updateReading(settings) {
-    this.pages = this.getReading(this.textSplitted, settings);
+  updateReading(updatedSetting) {
+    if (JSON.stringify(this.setting) == JSON.stringify(updatedSetting)) return;
+    const newPages = this.getReading(this.textSplitted, updatedSetting);
+    const newPageIndex = this.getUpdateIndex(updatedSetting, newPages);
+    this.pages = newPages;
     this.pageSize = this.pages.length;
-    this.pageIndex = 0; //TODO: be located in the same place
+    this.setPageIndex(newPageIndex);
+    this.setting = updatedSetting;
+  }
+
+  getUpdateIndex(updatedSetting, updatedPages) {
+    let newPageIndex = 0;
+    let wordCounter = 0;
+    let textSplittedIndex = this.getActualTextSplittedIndex();
+
+    if (this.setting.lineBreakTab && !updatedSetting.lineBreakTab) {
+      textSplittedIndex =
+        this.getIndexFromWithToWithoutLineBreakTab(textSplittedIndex);
+    }
+
+    if (!this.setting.lineBreakTab && updatedSetting.lineBreakTab) {
+      textSplittedIndex =
+        this.getIndexFromWithoutToWithLineBreakTab(textSplittedIndex);
+    }
+
+    for (let page of updatedPages) {
+      for (let row of page) {
+        for (let set of row) {
+          wordCounter += set.length;
+        }
+      }
+
+      if (wordCounter >= textSplittedIndex) return newPageIndex;
+      newPageIndex += 1;
+    }
+    return newPageIndex;
+  }
+
+  getActualTextSplittedIndex() {
+    let wordCounter = 1;
+    for (let page of this.pages.slice(0, this.pageIndex)) {
+      for (let row of page) {
+        for (let set of row) {
+          wordCounter += set.length;
+        }
+      }
+    }
+    return wordCounter;
+  }
+
+  getIndexFromWithToWithoutLineBreakTab(textSplittedIndexWithLineBreakTab) {
+    let wordCounter = 0;
+    let wordWithoutLineBreakTabCounter = 0;
+    for (let word of this.textSplitted) {
+      wordCounter += 1;
+      if (word != "\r\n" && word != "\t") wordWithoutLineBreakTabCounter += 1;
+      if (wordCounter >= textSplittedIndexWithLineBreakTab)
+        return wordWithoutLineBreakTabCounter;
+    }
+    return wordWithoutLineBreakTabCounter;
+  }
+
+  getIndexFromWithoutToWithLineBreakTab(textSplittedIndexWithoutLineBreakTab) {
+    let wordCounter = 0;
+    let wordWithLineBreakTabCounter = 0;
+    for (let word of this.textSplitted) {
+      wordWithLineBreakTabCounter += 1;
+      if (word != "\r\n" && word != "\t") wordCounter += 1;
+      if (wordCounter >= textSplittedIndexWithoutLineBreakTab)
+        return wordWithLineBreakTabCounter;
+    }
+    return wordWithLineBreakTabCounter;
   }
 
   getPageIndex() {
@@ -86,5 +156,6 @@ class Reading {
     return pageIndex > 0;
   }
 }
+
 const reading = new Reading();
 export { reading };

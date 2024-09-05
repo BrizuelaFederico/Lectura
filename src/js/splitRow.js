@@ -5,6 +5,7 @@ function splitToRows(textSplitted, rowMaxLength) {
   let row = [];
   for (let word of textSplitted) {
     if (word == "\r\n") {
+      row = row.concat(word);
       rows.push(row);
       row = [];
       continue;
@@ -35,7 +36,9 @@ function wordsArrayLength(array) {
 }
 
 function wordLength(word) {
-  return word == "\t" ? TAB_LENGTH : word.length;
+  if (word == "\r\n") return 0;
+  if (word == "\t") return TAB_LENGTH;
+  return word.length;
 }
 
 export { splitToRows, exceedsLength, wordsArrayLength };

@@ -15,13 +15,11 @@ class ReadingScreen {
     for (let row of page) {
       text = "";
       for (let sets of row) {
-        text = text.concat(`<pre>${sets.join(" ")}</pre>`);
-      }
-      if (text == "")
-        innerHTML = innerHTML.concat(
-          "<div class=line-break><pre>_</pre></div>"
+        text = text.concat(
+          `<pre>${sets.filter((word) => word != "\r\n").join(" ")}</pre>`
         );
-      else innerHTML = innerHTML.concat(`<div>${text}</div>`);
+      }
+      innerHTML = innerHTML.concat(`<div>${text}</div>`);
     }
     $screen.innerHTML = innerHTML;
     this.getRowSet(endRow, endSet);
@@ -59,7 +57,7 @@ class ReadingScreen {
   getNextRow($row) {
     const $nextRow = $row.nextElementSibling;
     if (!$nextRow) return false;
-    if ($nextRow.classList.contains("line-break"))
+    if ($nextRow.firstElementChild.textContent == "")
       return this.getNextRow($nextRow);
     return $nextRow;
   }
