@@ -1,70 +1,91 @@
-import { loadDefaultSetting } from "./loadSetting.js";
-
 const $cssRoot = document.querySelector(":root");
-const $aside = document.querySelector("aside");
-const inputs = $aside.querySelectorAll("input");
-const selects = $aside.querySelectorAll("select");
 const changeEvent = new Event("change");
+
+const SETTINGS_NAMES = {
+  LETTER_SIZE: "letterSize",
+  BOLD: "bold",
+  TYPOGRAPHY: "typography",
+  LETTER_COLOR: "letterColor",
+  BACKGROUND_COLOR: "backgroundColor",
+  MARGIN_ROW: "marginRow",
+  MARGIN_SET: "marginSet",
+  MARGIN_TOP: "marginTop",
+  MARGIN_LEFT: "marginLeft",
+  BORDER_TOP: "borderTop",
+  BORDER_BOTTOM: "borderBottom",
+  BORDER_RIGHT: "borderRight",
+  BORDER_LEFT: "borderLeft",
+  BORDER_STYLE: "borderStyle",
+  BORDER_COLOR: "borderColor",
+  INITIAL_PPM: "initialPPM",
+  FINAL_PPM: "finalPPM",
+  INCREASE_PPM: "increasePPM",
+  INCREASE_PAGE_PPM: "increasePagePPM",
+  ROW: "row",
+  SET: "set",
+  WORD_SET: "wordSet",
+  LINE_BREAK_TAB: "lineBreakTab",
+};
 
 function cssRootEvent(id, value) {
   let aux = "";
   switch (id) {
-    case "letterSize":
+    case SETTINGS_NAMES.LETTER_SIZE:
       $cssRoot.style.setProperty("--letterSize", value.toString() + "px");
       break;
-    case "bold":
+    case SETTINGS_NAMES.BOLD:
       aux = value ? "bold" : "lighter";
       $cssRoot.style.setProperty("--bold", aux);
       break;
-    case "typography":
+    case SETTINGS_NAMES.TYPOGRAPHY:
       $cssRoot.style.setProperty("--typography", value);
       break;
-    case "letterColor":
+    case SETTINGS_NAMES.LETTER_COLOR:
       $cssRoot.style.setProperty("--letterColor", value);
       break;
-    case "backgroundColor":
+    case SETTINGS_NAMES.BACKGROUND_COLOR:
       $cssRoot.style.setProperty("--backgroundColor", value);
       break;
-    case "marginRow":
+    case SETTINGS_NAMES.MARGIN_ROW:
       $cssRoot.style.setProperty("--marginRow", value.toString() + "px");
       break;
-    case "marginSet":
+    case SETTINGS_NAMES.MARGIN_SET:
       $cssRoot.style.setProperty("--marginSet", value.toString() + "px");
       break;
-    case "marginTop":
+    case SETTINGS_NAMES.MARGIN_TOP:
       $cssRoot.style.setProperty("--marginTop", value.toString() + "px");
       break;
-    case "marginLeft":
+    case SETTINGS_NAMES.MARGIN_LEFT:
       $cssRoot.style.setProperty("--marginLeft", value.toString() + "px");
       break;
-    case "borderTop":
+    case SETTINGS_NAMES.BORDER_TOP:
       aux = value
         ? document.getElementById("borderColor").value
         : "transparent";
       $cssRoot.style.setProperty("--borderTop", aux);
       break;
-    case "borderBottom":
+    case SETTINGS_NAMES.BORDER_BOTTOM:
       aux = value
         ? document.getElementById("borderColor").value
         : "transparent";
       $cssRoot.style.setProperty("--borderBottom", aux);
       break;
-    case "borderRight":
+    case SETTINGS_NAMES.BORDER_RIGHT:
       aux = value
         ? document.getElementById("borderColor").value
         : "transparent";
       $cssRoot.style.setProperty("--borderRight", aux);
       break;
-    case "borderLeft":
+    case SETTINGS_NAMES.BORDER_LEFT:
       aux = value
         ? document.getElementById("borderColor").value
         : "transparent";
       $cssRoot.style.setProperty("--borderLeft", aux);
       break;
-    case "borderStyle":
+    case SETTINGS_NAMES.BORDER_STYLE:
       $cssRoot.style.setProperty("--borderStyle", value);
       break;
-    case "borderColor":
+    case SETTINGS_NAMES.BORDER_COLOR:
       $cssRoot.style.setProperty("--borderColor", value);
       document.getElementById("borderTop").dispatchEvent(changeEvent);
       document.getElementById("borderBottom").dispatchEvent(changeEvent);
@@ -77,19 +98,27 @@ function cssRootEvent(id, value) {
 function addEventListener($element) {
   $element.addEventListener("change", (event) => {
     let id = event.currentTarget.getAttribute("id");
-    let value =
-      event.currentTarget.getAttribute("type") == "checkbox"
-        ? event.currentTarget.checked
-        : event.currentTarget.value;
+    let value = getValue(event.currentTarget);
     cssRootEvent(id, value);
   });
 }
 
-inputs.forEach(($input) => {
-  addEventListener($input);
-});
-selects.forEach(($input) => {
-  addEventListener($input);
+function getValue($element) {
+  return $element.getAttribute("type") == "checkbox"
+    ? $element.checked
+    : $element.value;
+}
+
+function getSettingsValues() {
+  const settingsValues = {};
+  Object.values(SETTINGS_NAMES).forEach((name) => {
+    settingsValues[name] = getValue(document.getElementById(name));
+  });
+  return settingsValues;
+}
+
+Object.values(SETTINGS_NAMES).forEach((name) => {
+  addEventListener(document.getElementById(name));
 });
 
-loadDefaultSetting();
+export { SETTINGS_NAMES, getSettingsValues };

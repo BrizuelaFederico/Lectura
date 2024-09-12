@@ -51,6 +51,20 @@ dialog {
       text-align: center;
       font-size: var(--letterSize);
     }
+
+    &[type="text"] {
+      background: transparent;
+      max-width: 100px;
+      min-width: 50vw;
+      border-bottom: #000000;
+      border-top: transparent;
+      border-left: transparent;
+      border-right: transparent;
+      border-width: 2px;
+      border-style: solid;
+      text-align: center;
+      font-size: var(--letterSize);
+    }
   }
 }
 
