@@ -16,6 +16,12 @@ const $loadSettingApplyButton = $("loadSettingApplyButton");
 const $loadSettingCancelButton = $("loadSettingCancelButton");
 const $settingDBselect = $("settingDBselect");
 
+const $deleteSettingDialog = $("deleteSettingDialog");
+const $showDeleteSettingDialog = $("showDeleteSettingDialog");
+const $deleteSettingApplyButton = $("deleteSettingApplyButton");
+const $deleteSettingCancelButton = $("deleteSettingCancelButton");
+const $deleteSettingDBselect = $("deleteSettingDBselect");
+
 $showSaveSettingDialog.addEventListener("click", (event) => {
   $saveSettingDialog.showModal();
 });
@@ -82,6 +88,48 @@ $loadSettingApplyButton.addEventListener("click", (event) => {
       onerrorFunction(reject);
     });
   $loadSettingDialog.close();
+});
+
+$showDeleteSettingDialog.addEventListener("click", (event) => {
+  const result = db.getAll(TABLE_NAMES.SETTING);
+  result
+    .then((resolve) => {
+      showDeleteSettingDialog(resolve);
+    })
+    .catch((reject) => {
+      onerrorFunction(reject);
+    });
+});
+
+function showDeleteSettingDialog(dbResult) {
+  let innerHTML = "<option>_</option>";
+  Object.values(dbResult).forEach((value) => {
+    innerHTML = innerHTML.concat(`<option>${value.id}</option>`);
+  });
+  $deleteSettingDBselect.innerHTML = innerHTML;
+  $deleteSettingDialog.showModal();
+}
+
+$deleteSettingCancelButton.addEventListener("click", (event) => {
+  $deleteSettingDialog.close();
+});
+
+$deleteSettingApplyButton.addEventListener("click", (event) => {
+  const selectedSetting = $deleteSettingDBselect.selectedOptions[0].label;
+  if (selectedSetting == "_") {
+    $deleteSettingDialog.close();
+    return;
+  }
+
+  const result = db.delete(TABLE_NAMES.SETTING, selectedSetting);
+  result
+    .then((resolve) => {
+      oncompleteFunction(resolve);
+    })
+    .catch((reject) => {
+      onerrorFunction(reject);
+    });
+  $deleteSettingDialog.close();
 });
 
 function oncompleteFunction(message) {

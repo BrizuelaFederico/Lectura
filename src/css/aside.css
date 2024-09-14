@@ -55,10 +55,16 @@ aside {
     background-color: transparent;
     border: none;
     transition: transform 0.2s;
-
+    margin-right: 4vw;
     &:active {
       transform: translate(0px, 10px);
     }
+  }
+
+  .delete-button {
+    background-color: transparent;
+    border: none;
+    transition: transform 0.2s;
   }
 }
 

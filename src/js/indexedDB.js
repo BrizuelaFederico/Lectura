@@ -67,6 +67,20 @@ class Database {
       };
     });
   }
+
+  delete(objectStoreName, key) {
+    const transaction = this.db.transaction(objectStoreName, "readwrite");
+    const objectStore = transaction.objectStore(objectStoreName);
+    const request = objectStore.delete(key);
+    return new Promise((resolve, reject) => {
+      request.onsuccess = (event) => {
+        resolve(request.result);
+      };
+      request.onerror = (event) => {
+        reject(event.target.error?.message);
+      };
+    });
+  }
 }
 
 const db = new Database(DATABASE_NAME, DATABASE_VERSION, TABLE_NAMES);

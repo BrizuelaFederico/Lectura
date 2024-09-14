@@ -111,6 +111,27 @@
             <path d="M12 4l0 12" />
           </svg>
         </button>
+        <button class="delete-button scale-button" id="showDeleteSettingDialog">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-trash"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#000000"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M4 7l16 0" />
+            <path d="M10 11l0 6" />
+            <path d="M14 11l0 6" />
+            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+          </svg>
+        </button>
       </div>
     </aside>
     <article class="flex-wrap-column">
@@ -535,6 +556,63 @@
           </svg>
         </button>
         <button id="loadSettingApplyButton" class="reading-button scale-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-square-rounded-check"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#00b341"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M9 12l2 2l4 -4" />
+            <path
+              d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"
+            />
+          </svg>
+        </button>
+      </div>
+    </dialog>
+
+    <dialog id="deleteSettingDialog">
+      <label
+        >Eliminar configuración:
+        <select id="deleteSettingDBselect">
+          <option selected>Default</option>
+        </select></label
+      >
+      <div class="div-dialog-button">
+        <button
+          id="deleteSettingCancelButton"
+          class="reading-button scale-button"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-square-rounded-x"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#ff2825"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M10 10l4 4m0 -4l-4 4" />
+            <path
+              d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"
+            />
+          </svg>
+        </button>
+        <button
+          id="deleteSettingApplyButton"
+          class="reading-button scale-button"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="icon icon-tabler icon-tabler-square-rounded-check"
