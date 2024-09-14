@@ -146,7 +146,7 @@ function loadSetting(setting) {
   for (let [key, value] of Object.entries(setting)) {
     let $input = document.getElementById(key);
     if ($input.getAttribute("type") == "checkbox")
-      $input.checked = value == "true";
+      $input.checked = value.toString() == "true";
     else $input.value = value;
     $input.dispatchEvent(changeEvent);
   }
