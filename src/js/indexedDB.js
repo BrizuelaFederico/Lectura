@@ -40,25 +40,32 @@ class Database {
   }
 
   get(objectStoreName, key) {
-    const transaction = db.transaction(objectStoreName);
+    const transaction = this.db.transaction(objectStoreName);
     const objectStore = transaction.objectStore(objectStoreName);
     const request = objectStore.get(key);
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       request.onsuccess = (event) => {
         resolve(request.result);
       };
       request.onerror = (event) => {
-        resolve(event.target.error?.message);
+        reject(event.target.error?.message);
       };
     });
   }
 
   getAll(objectStoreName) {
-    const transaction = db.transaction(objectStoreName);
+    const transaction = this.db.transaction(objectStoreName);
     const objectStore = transaction.objectStore(objectStoreName);
-    objectStore.getAll().onsuccess = (event) => {
-      console.log(`Got all customers: ${event.target.result}`);
-    };
+    const request = objectStore.getAll();
+    return new Promise((resolve, reject) => {
+      request.onsuccess = (event) => {
+        resolve(request.result);
+      };
+
+      request.onerror = (event) => {
+        reject(event.target.error?.message);
+      };
+    });
   }
 }
 
