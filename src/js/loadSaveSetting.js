@@ -152,4 +152,6 @@ function loadSetting(setting) {
   }
 }
 
-loadSetting(defaultSetting); //TODO load db, if its empty, load default setting
+loadSetting(defaultSetting);
+
+export { loadSetting };

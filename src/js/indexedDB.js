@@ -2,6 +2,7 @@ const DATABASE_NAME = "ReadingDatabase";
 const DATABASE_VERSION = 1;
 const TABLE_NAMES = {
   SETTING: "setting",
+  READING: "reading",
 };
 
 class Database {
@@ -28,7 +29,7 @@ class Database {
   add(objectStoreName, object) {
     const transaction = this.db.transaction(objectStoreName, "readwrite");
     const objectStore = transaction.objectStore(objectStoreName);
-    objectStore.add(object);
+    objectStore.put(object);
     return new Promise((resolve, reject) => {
       transaction.oncomplete = (event) => {
         resolve(object);

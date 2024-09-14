@@ -345,6 +345,70 @@
               </button>
             </div>
           </div>
+          <div class="align-self-center">
+            <button id="showLoadReadingDialog" class="load-button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-upload"
+                width="44"
+                height="44"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#ffffff"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                <path d="M7 9l5 -5l5 5" />
+                <path d="M12 4l0 12" />
+              </svg>
+            </button>
+            <button id="showSaveReadingDialog" class="save-button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-download"
+                width="44"
+                height="44"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#ffffff"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                <path d="M7 11l5 5l5 -5" />
+                <path d="M12 4l0 12" />
+              </svg>
+            </button>
+            <button
+              id="showDeleteReadingDialog"
+              class="delete-button scale-button"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-trash"
+                width="44"
+                height="44"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#ffffff"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M4 7l16 0" />
+                <path d="M10 11l0 6" />
+                <path d="M14 11l0 6" />
+                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
       <div class="flex-wrap-column align-content-center">
@@ -581,10 +645,8 @@
     <dialog id="deleteSettingDialog">
       <label
         >Eliminar configuración:
-        <select id="deleteSettingDBselect">
-          <option selected>Default</option>
-        </select></label
-      >
+        <select id="deleteSettingDBselect"></select
+      ></label>
       <div class="div-dialog-button">
         <button
           id="deleteSettingCancelButton"
@@ -635,8 +697,168 @@
       </div>
     </dialog>
 
+    <dialog id="loadReadingDialog">
+      <p></p>
+      <div class="div-dialog-button">
+        <button
+          id="loadReadingDialogCancelButton"
+          class="reading-button scale-button"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-square-rounded-x"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#ff2825"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M10 10l4 4m0 -4l-4 4" />
+            <path
+              d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"
+            />
+          </svg>
+        </button>
+        <button
+          id="loadReadingDialogApplyButton"
+          class="reading-button scale-button"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-square-rounded-check"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#00b341"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M9 12l2 2l4 -4" />
+            <path
+              d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"
+            />
+          </svg>
+        </button>
+      </div>
+    </dialog>
+
+    <dialog id="saveReadingDialog">
+      <p>¿Quieres guardar la ubicación y estilos de la lectura actual?</p>
+      <div class="div-dialog-button">
+        <button
+          id="saveReadingDialogCancelButton"
+          class="reading-button scale-button"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-square-rounded-x"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#ff2825"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M10 10l4 4m0 -4l-4 4" />
+            <path
+              d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"
+            />
+          </svg>
+        </button>
+        <button
+          id="saveReadingDialogApplyButton"
+          class="reading-button scale-button"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-square-rounded-check"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#00b341"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M9 12l2 2l4 -4" />
+            <path
+              d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"
+            />
+          </svg>
+        </button>
+      </div>
+    </dialog>
+
+    <dialog id="deleteReadingDialog">
+      <label
+        >Eliminar guardado lectura:
+        <select id="deleteReadingDBselect"></select
+      ></label>
+      <div class="div-dialog-button">
+        <button
+          id="deleteReadingDialogCancelButton"
+          class="reading-button scale-button"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-square-rounded-x"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#ff2825"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M10 10l4 4m0 -4l-4 4" />
+            <path
+              d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"
+            />
+          </svg>
+        </button>
+        <button
+          id="deleteReadingDialogApplyButton"
+          class="reading-button scale-button"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-square-rounded-check"
+            width="44"
+            height="44"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#00b341"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M9 12l2 2l4 -4" />
+            <path
+              d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"
+            />
+          </svg>
+        </button>
+      </div>
+    </dialog>
+
     <script src="./js/setting.js" type="module"></script>
     <script src="./js/loadSaveSetting.js" type="module"></script>
+    <script src="./js/loadSaveReading.js" type="module"></script>
     <script src="./js/loadFile.js" type="module"></script>
     <script src="./js/readingControllerButton.js" type="module"></script>
     <script src="./js/automaticReading.js" type="module"></script>

@@ -161,3 +161,26 @@ article {
   grid-auto-columns: auto;
   gap: 15px;
 }
+
+.save-button {
+  background-color: transparent;
+  border: none;
+  transition: transform 0.2s;
+  &:active {
+    transform: translate(0px, 10px);
+  }
+}
+
+.load-button {
+  background-color: transparent;
+  border: none;
+  transition: transform 0.2s;
+  &:active {
+    transform: translate(0px, -10px);
+  }
+}
+.delete-button {
+  background-color: transparent;
+  border: none;
+  transition: transform 0.2s;
+}

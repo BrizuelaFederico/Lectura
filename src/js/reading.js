@@ -155,6 +155,10 @@ class Reading {
   hasPreviousPage(pageIndex = this.pageIndex) {
     return pageIndex > 0;
   }
+
+  getReadingName() {
+    return this.fileName;
+  }
 }
 
 const reading = new Reading();
