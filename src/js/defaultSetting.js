@@ -16,6 +16,7 @@ defaultSetting[SETTINGS_NAMES.BORDER_RIGHT] = "false";
 defaultSetting[SETTINGS_NAMES.BORDER_LEFT] = "false";
 defaultSetting[SETTINGS_NAMES.BORDER_STYLE] = "solid";
 defaultSetting[SETTINGS_NAMES.BORDER_COLOR] = "#ece02c";
+defaultSetting[SETTINGS_NAMES.BORDER_WIDTH] = "2";
 defaultSetting[SETTINGS_NAMES.INITIAL_PPM] = "350";
 defaultSetting[SETTINGS_NAMES.FINAL_PPM] = "500";
 defaultSetting[SETTINGS_NAMES.INCREASE_PPM] = "10";

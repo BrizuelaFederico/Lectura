@@ -17,6 +17,7 @@ const SETTINGS_NAMES = {
   BORDER_LEFT: "borderLeft",
   BORDER_STYLE: "borderStyle",
   BORDER_COLOR: "borderColor",
+  BORDER_WIDTH: "borderWidth",
   INITIAL_PPM: "initialPPM",
   FINAL_PPM: "finalPPM",
   INCREASE_PPM: "increasePPM",
@@ -91,6 +92,9 @@ function cssRootEvent(id, value) {
       document.getElementById("borderBottom").dispatchEvent(changeEvent);
       document.getElementById("borderLeft").dispatchEvent(changeEvent);
       document.getElementById("borderRight").dispatchEvent(changeEvent);
+      break;
+    case SETTINGS_NAMES.BORDER_WIDTH:
+      $cssRoot.style.setProperty("--borderWidth", value.toString() + "px");
       break;
   }
 }

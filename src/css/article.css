@@ -107,15 +107,16 @@ article {
 
   div {
     margin-bottom: var(--marginRow);
+    border: var(--borderWidth) solid transparent;
   }
 
   pre {
     margin-right: var(--marginSet);
     border-style: var(--borderStyle);
-    border-color: var(--backgroundColor);
+    border-color: transparent;
+    border-width: var(--borderWidth);
     font-family: var(--typography), monospace, Arial, Helvetica, sans-serif;
     display: inline;
-    box-sizing: border-box;
 
     &.selected {
       border-style: var(--borderStyle);
