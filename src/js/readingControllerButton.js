@@ -1,5 +1,4 @@
-import { readingController } from "./readingController.js";
-import { reading } from "./reading.js";
+import { readingController, reading } from "./init.js";
 
 const $ = (elem) => document.getElementById(elem);
 

@@ -1,4 +1,9 @@
-import { reading } from "../src/js/reading.js";
+import { Reading } from "../src/js/reading.js";
+
+const WORD_LENGTH = 4;
+const MARGIN_SET_LENGTH = 1.2;
+
+const reading = new Reading(WORD_LENGTH, MARGIN_SET_LENGTH);
 
 test("[['word1'], ['word2'], ['word3'], ['word4'], ['word5']], rows: 2, sets: 2, words: 1, lineBreakTab: false", () => {
   const textSplitted = ["word1", "word2", "word3", "word4", "word5"];

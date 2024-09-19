@@ -1,6 +1,4 @@
-import { db, TABLE_NAMES } from "./indexedDB.js";
-import { reading } from "./reading.js";
-import { readingController } from "./readingController.js";
+import { reading, readingController, db, TABLE_NAMES } from "./init.js";
 import { getSettingsValues } from "./setting.js";
 import { loadSetting } from "./loadSaveSetting.js";
 

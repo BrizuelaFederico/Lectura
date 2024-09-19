@@ -1,10 +1,3 @@
-const DATABASE_NAME = "ReadingDatabase";
-const DATABASE_VERSION = 1;
-const TABLE_NAMES = {
-  SETTING: "setting",
-  READING: "reading",
-};
-
 class Database {
   constructor(databaseName, databaseVersion, tableNames) {
     this.db = null;
@@ -84,6 +77,4 @@ class Database {
   }
 }
 
-const db = new Database(DATABASE_NAME, DATABASE_VERSION, TABLE_NAMES);
-
-export { db, TABLE_NAMES };
+export { Database };

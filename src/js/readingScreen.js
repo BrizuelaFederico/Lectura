@@ -117,6 +117,4 @@ function toggleFullScreen() {
   }
 }
 
-const readingScreen = new ReadingScreen();
-
-export { readingScreen };
+export { ReadingScreen };

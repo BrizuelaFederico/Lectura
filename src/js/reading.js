@@ -3,17 +3,16 @@ import { splitToRows } from "./splitRow.js";
 import { splitToSets } from "./splitSet.js";
 import { splitToPages } from "./splitPage.js";
 
-const WORD_LENGTH = 4; //1 word = 4 letter
-const MARGIN_SET_LENGTH = 1.2; //This is to try to keep the same amount of words in each set.
-
 class Reading {
-  constructor() {
+  constructor(wordLength, marginSetLength) {
     this.textSplitted = [];
     this.pages = [];
     this.pageSize = 0;
     this.pageIndex = 0;
     this.fileName = "";
     this.setting = null;
+    this.wordLength = wordLength;
+    this.marginSetLength = marginSetLength;
   }
 
   newReading(fileName, text, setting) {
@@ -38,13 +37,13 @@ class Reading {
 
     const rows = splitToRows(
       _textSplitted,
-      numberSets * numberWordSets * WORD_LENGTH
+      numberSets * numberWordSets * this.wordLength
     );
     const rowsWordSet = rows.map((row) =>
       splitToSets(
         row,
         numberSets,
-        numberWordSets * WORD_LENGTH * MARGIN_SET_LENGTH
+        numberWordSets * this.wordLength * this.marginSetLength
       )
     );
     return splitToPages(rowsWordSet, numberRows);
@@ -161,5 +160,4 @@ class Reading {
   }
 }
 
-const reading = new Reading();
-export { reading };
+export { Reading };

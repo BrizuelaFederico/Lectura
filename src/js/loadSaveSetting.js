@@ -1,7 +1,6 @@
 import { defaultSetting } from "./defaultSetting.js";
-import { db, TABLE_NAMES } from "./indexedDB.js";
+import { db, TABLE_NAMES, readingController } from "./init.js";
 import { getSettingsValues } from "./setting.js";
-import { readingController } from "./readingController.js";
 const $ = (elem) => document.getElementById(elem);
 const changeEvent = new Event("change");
 
@@ -151,7 +150,5 @@ function loadSetting(setting) {
     $input.dispatchEvent(changeEvent);
   }
 }
-
-loadSetting(defaultSetting);
 
 export { loadSetting };
