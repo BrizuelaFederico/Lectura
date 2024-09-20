@@ -11,7 +11,7 @@
   </head>
   <body>
     <header>
-      <button>
+      <button id="displaySettingButton">
         <svg
           class="icon icon-tabler icon-tabler-settings"
           width="44"
@@ -61,6 +61,8 @@
           <label
             >Borde Izquierda<input type="checkbox" id="borderLeft"
           /></label>
+        </div>
+        <div class="flex-setting-item">
           <label
             >Estilo Borde<select id="borderStyle">
               <option>solid</option>
@@ -71,8 +73,31 @@
           <label>Color Borde<input type="color" id="borderColor" /></label>
           <label>Grosor Borde<input type="number" id="borderWidth" /></label>
         </div>
+      </div>
+      <div class="flex-buttons">
         <button id="readingSettingsButton" class="reading-settings-button">
-          Velocidad / Estructura &#9660;
+          <span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-license"
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#000000"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path
+                d="M15 21h-9a3 3 0 0 1 -3 -3v-1h10v2a2 2 0 0 0 4 0v-14a2 2 0 1 1 2 2h-2m2 -4h-11a3 3 0 0 0 -3 3v11"
+              />
+              <path d="M9 7l4 0" />
+              <path d="M9 11l4 0" />
+            </svg>
+            Velocidad / Estructura &#9660;</span
+          >
         </button>
       </div>
       <div class="flex-buttons">
@@ -857,6 +882,9 @@
       </div>
     </dialog>
 
+    <div id="alert" class="alert">
+      <p></p>
+    </div>
     <script src="./js/init.js" type="module"></script>
     <script src="./js/setting.js" type="module"></script>
     <script src="./js/loadSaveSetting.js" type="module"></script>
@@ -865,5 +893,6 @@
     <script src="./js/readingControllerButton.js" type="module"></script>
     <script src="./js/automaticReading.js" type="module"></script>
     <script src="./js/readingSetting.js" type="module"></script>
+    <script src="./js/alert.js" type="module"></script>
   </body>
 </html>

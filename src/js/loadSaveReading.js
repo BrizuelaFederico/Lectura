@@ -1,6 +1,7 @@
 import { reading, readingController, db, TABLE_NAMES } from "./init.js";
 import { getSettingsValues } from "./setting.js";
 import { loadSetting } from "./loadSaveSetting.js";
+import { showSuccessAlert, showErrorAlert } from "./alert.js";
 
 const $ = (elem) => document.getElementById(elem);
 const $loadReadingDialog = $("loadReadingDialog");
@@ -53,6 +54,9 @@ $loadReadingDialogApplyButton.addEventListener("click", (event) => {
       loadSetting(resolve.setting);
       readingController.updateReading();
       readingController.goPage(resolve.pageIndex);
+      oncompleteFunction(
+        `Se pudo cargar correctamente la configurarión para la lectura "${resolve.id}"`
+      );
     })
     .catch((reject) => {
       onerrorFunction(reject);
@@ -77,7 +81,9 @@ $saveReadingDialogApplyButton.addEventListener("click", (event) => {
   const result = db.add(TABLE_NAMES.READING, data);
   result
     .then((resolve) => {
-      oncompleteFunction(resolve);
+      oncompleteFunction(
+        `Se pudo guardar correctamente la configuración para la lectura "${data.id}"`
+      );
     })
     .catch((reject) => {
       onerrorFunction(reject);
@@ -119,7 +125,9 @@ $deleteReadingDialogApplyButton.addEventListener("click", (event) => {
   const result = db.delete(TABLE_NAMES.READING, selectedSetting);
   result
     .then((resolve) => {
-      oncompleteFunction(resolve);
+      oncompleteFunction(
+        `Se pudo eliminar correctamente la configuración la lectura "${selectedSetting}"`
+      );
     })
     .catch((reject) => {
       onerrorFunction(reject);
@@ -132,11 +140,11 @@ $deleteReadingDialogCancelButton.addEventListener("click", (event) => {
 });
 
 function oncompleteFunction(message) {
-  //TODO
+  showSuccessAlert(message);
   console.log(message);
 }
 
 function onerrorFunction(message) {
-  //TODO
+  showErrorAlert(message);
   console.log(message);
 }

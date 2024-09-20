@@ -28,6 +28,22 @@ const SETTINGS_NAMES = {
   LINE_BREAK_TAB: "lineBreakTab",
 };
 
+const $displaySettingButton = document.getElementById("displaySettingButton");
+let displaySetting = false;
+const $aside = document.querySelector("aside");
+$displaySettingButton.addEventListener("click", (event) => {
+  displaySetting = !displaySetting;
+  if (displaySetting) {
+    $aside.style.transform = "translateY(0px)";
+    $aside.style.position = "relative";
+  } else {
+    $aside.style.transform = "translateY(-100%)";
+    setTimeout(() => {
+      $aside.style.position = "absolute";
+    }, 380);
+  }
+});
+
 function cssRootEvent(id, value) {
   let aux = "";
   switch (id) {

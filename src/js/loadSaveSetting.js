@@ -1,6 +1,7 @@
 import { defaultSetting } from "./defaultSetting.js";
 import { db, TABLE_NAMES, readingController } from "./init.js";
 import { getSettingsValues } from "./setting.js";
+import { showSuccessAlert, showErrorAlert } from "./alert.js";
 const $ = (elem) => document.getElementById(elem);
 const changeEvent = new Event("change");
 
@@ -34,7 +35,9 @@ $saveSettingApplyButton.addEventListener("click", (event) => {
   const result = db.add(TABLE_NAMES.SETTING, data);
   result
     .then((resolve) => {
-      oncompleteFunction(resolve);
+      oncompleteFunction(
+        `Se guardó correctamente la configuración: "${resolve.id}"`
+      );
     })
     .catch((reject) => {
       onerrorFunction(reject);
@@ -76,10 +79,12 @@ $loadSettingApplyButton.addEventListener("click", (event) => {
   const result = db.get(TABLE_NAMES.SETTING, selectedSetting);
   result
     .then((resolve) => {
-      if (!resolve || resolve == "Default") {
+      if (!resolve || resolve.id == "Default") {
         loadSetting(defaultSetting);
+        oncompleteFunction(`Se cargó la configuración por defecto`);
       } else {
         loadSetting(resolve.setting);
+        oncompleteFunction(`Se cargó correctamente: "${resolve.id}"`);
       }
       readingController.updateReading();
     })
@@ -123,7 +128,9 @@ $deleteSettingApplyButton.addEventListener("click", (event) => {
   const result = db.delete(TABLE_NAMES.SETTING, selectedSetting);
   result
     .then((resolve) => {
-      oncompleteFunction(resolve);
+      oncompleteFunction(
+        `Se eliminó correctamente la configuración: "${selectedSetting}"`
+      );
     })
     .catch((reject) => {
       onerrorFunction(reject);
@@ -132,12 +139,12 @@ $deleteSettingApplyButton.addEventListener("click", (event) => {
 });
 
 function oncompleteFunction(message) {
-  //TODO
+  showSuccessAlert(message);
   console.log(message);
 }
 
 function onerrorFunction(message) {
-  //TODO
+  showErrorAlert(message);
   console.log(message);
 }
 

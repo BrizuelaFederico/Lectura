@@ -136,6 +136,7 @@ article {
   margin: 8px 0px;
   background-color: transparent;
   transition: transform 0.1s;
+  cursor: pointer;
   border: none;
 }
 
@@ -167,6 +168,7 @@ article {
   background-color: transparent;
   border: none;
   transition: transform 0.2s;
+  cursor: pointer;
   &:active {
     transform: translate(0px, 10px);
   }
@@ -176,6 +178,7 @@ article {
   background-color: transparent;
   border: none;
   transition: transform 0.2s;
+  cursor: pointer;
   &:active {
     transform: translate(0px, -10px);
   }
@@ -184,4 +187,5 @@ article {
   background-color: transparent;
   border: none;
   transition: transform 0.2s;
+  cursor: pointer;
 }

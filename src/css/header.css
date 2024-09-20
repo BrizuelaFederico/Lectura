@@ -2,12 +2,15 @@ header {
   display: flex;
   flex-wrap: wrap-reverse;
   background-color: black;
+  position: relative;
+  z-index: 5;
 
   button {
     background-color: transparent;
     border: none;
-    transition: rotate 0.3s;
+    transition: rotate 0.2s;
     max-width: min-content;
+    cursor: pointer;
     &:active {
       rotate: 90deg;
     }

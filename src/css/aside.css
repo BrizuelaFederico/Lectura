@@ -1,6 +1,10 @@
 aside {
   background: linear-gradient(to left, #fda949, #d5ec51);
   padding: 2vh 2vw;
+  transform: translateY(-100%);
+  position: absolute;
+  transition: transform 0.4s linear;
+  z-index: 2;
 
   input {
     margin-left: 4px;
@@ -21,6 +25,7 @@ aside {
   .flex-setting {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
   }
 
   .flex-setting-item {
@@ -69,5 +74,32 @@ aside {
 }
 
 .reading-settings-button {
-  max-height: 50px;
+  margin-top: 4vh;
+
+  max-height: 100px;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.75em;
+  background: #000000;
+  padding: 1px 2px 3px 0px;
+
+  span {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    border: 2px solid #000000;
+    border-radius: 0.75em;
+    padding: 0.75em 1em;
+    background: #e8e8e8;
+    color: #000000;
+    transform: translateY(-0.2em);
+    transition: transform 0.1s ease;
+
+    &:hover {
+      transform: translateY(-0.33em);
+    }
+    &:active {
+      transform: translateY(0);
+    }
+  }
 }
