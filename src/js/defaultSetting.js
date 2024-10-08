@@ -3,7 +3,7 @@ import { SETTINGS_NAMES } from "./setting.js";
 const defaultSetting = {};
 defaultSetting[SETTINGS_NAMES.LETTER_SIZE] = "22";
 defaultSetting[SETTINGS_NAMES.BOLD] = "22";
-defaultSetting[SETTINGS_NAMES.TYPOGRAPHY] = "Send Flowers";
+defaultSetting[SETTINGS_NAMES.TYPOGRAPHY] = "Courier New";
 defaultSetting[SETTINGS_NAMES.LETTER_COLOR] = "#efe6e6";
 defaultSetting[SETTINGS_NAMES.BACKGROUND_COLOR] = "#474343";
 defaultSetting[SETTINGS_NAMES.MARGIN_ROW] = "10";
