@@ -6,6 +6,43 @@ body {
   max-width: 100vw;
 }
 
+.flex-wrap-column {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.flex-wrap-row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.align-content-center {
+  align-content: center;
+}
+
+.align-self-center {
+  align-self: center;
+}
+
+.flex-setting {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.flex-setting-item {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 2vh 2vw;
+  label {
+    min-width: min-content;
+    margin-top: 2vh;
+  }
+}
+
 dialog {
   position: fixed;
   inset: 0;
