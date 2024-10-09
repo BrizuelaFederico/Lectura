@@ -1,0 +1,27 @@
+import "./css/article.css";
+import "./css/aside.css";
+import "./css/body.css";
+import "./css/button.css";
+import "./css/header.css";
+import "./css/root.css";
+import "./css/typography.css";
+
+//import "./js/alert.js";
+import "./js/automaticReading.js";
+//import "./js/defaultSetting.js";
+//import "./js/indexedDB.js";
+import "./js/init.js";
+import "./js/loadFile.js";
+import "./js/loadSaveReading.js";
+//import "./js/loadSaveSetting.js";
+//import "./js/reading.js";
+//import "./js/readingController.js";
+import "./js/readingControllerButton.js";
+import "./js/readingData.js";
+//import "./js/readingScreen.js";
+import "./js/readingSetting.js";
+//import "./js/setting.js";
+//import "./js/splitPage.js";
+//import "./js/splitRow.js";
+//import "./js/splitSet.js";
+//import "./js/splitText.js";
