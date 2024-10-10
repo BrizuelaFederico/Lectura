@@ -20,8 +20,10 @@ function getHHMMSS(seconds) {
   seconds = parseInt(seconds, 10);
   const hh = Math.floor(seconds / 3600);
   const totalSeconds = seconds % 3600;
-  const mm = Math.floor(totalSeconds / 60);
-  const ss = totalSeconds % 60;
+  let mm = Math.floor(totalSeconds / 60);
+  let ss = totalSeconds % 60;
+  mm = mm < 10 ? `0${mm}` : mm;
+  ss = ss < 10 ? `0${ss}` : ss;
   return `${hh}:${mm}:${ss}`;
 }
 
