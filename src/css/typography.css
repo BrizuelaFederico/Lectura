@@ -1,90 +1,90 @@
 @font-face {
   font-family: "Send Flowers";
-  src: url("./typography/SendFlowers-Regular.ttf") format("truetype");
+  src: url("./typography/SendFlowers-Regular.woff2") format("woff2");
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
   font-family: "Allerta Stencil";
-  src: url("./typography/AllertaStencil-Regular.ttf") format("truetype");
+  src: url("./typography/AllertaStencil-Regular.woff2") format("woff2");
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
   font-family: "Creepster";
-  src: url("./typography/Creepster-Regular.ttf") format("truetype");
+  src: url("./typography/Creepster-Regular.woff2") format("woff2");
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
   font-family: "Dongle";
-  src: url("./typography/Dongle-Regular.ttf") format("truetype");
+  src: url("./typography/Dongle-Regular.woff2") format("woff2");
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
   font-family: "Frederic Great";
-  src: url("./typography/FrederickatheGreat-Regular.ttf") format("truetype");
+  src: url("./typography/FrederickatheGreat-Regular.woff2") format("woff2");
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
   font-family: "Italianno";
-  src: url("./typography/Italianno-Regular.ttf") format("truetype");
+  src: url("./typography/Italianno-Regular.woff2") format("woff2");
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
   font-family: "Lalezar";
-  src: url("./typography/Lalezar-Regular.ttf") format("truetype");
+  src: url("./typography/Lalezar-Regular.woff2") format("woff2");
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
   font-family: "Lobster";
-  src: url("./typography/Lobster-Regular.ttf") format("truetype");
+  src: url("./typography/Lobster-Regular.woff2") format("woff2");
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
   font-family: "Nosifer";
-  src: url("./typography/Nosifer-Regular.ttf") format("truetype");
+  src: url("./typography/Nosifer-Regular.woff2") format("woff2");
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
   font-family: "Patrick Hand";
-  src: url("./typography/PatrickHand-Regular.ttf") format("truetype");
+  src: url("./typography/PatrickHand-Regular.woff2") format("woff2");
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
   font-family: "Play";
-  src: url("./typography/Play-Regular.ttf") format("truetype");
+  src: url("./typography/Play-Regular.woff2") format("woff2");
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
   font-family: "Rampart One";
-  src: url("./typography/RampartOne-Regular.ttf") format("truetype");
+  src: url("./typography/RampartOne-Regular.woff2") format("woff2");
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
   font-family: "Redressed";
-  src: url("./typography/Redressed-Regular.ttf") format("truetype");
+  src: url("./typography/Redressed-Regular.woff2") format("woff2");
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
   font-family: "Sans Forgetica";
-  src: url("./typography/SansForgetica-Regular.otf") format("truetype");
+  src: url("./typography/SansForgetica-Regular.woff2") format("woff2");
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
   font-family: "Special Elite";
-  src: url("./typography/SpecialElite-Regular.ttf") format("truetype");
+  src: url("./typography/SpecialElite-Regular.woff2") format("woff2");
   font-style: normal;
   font-weight: normal;
 }
