@@ -54,25 +54,7 @@ dialog {
   padding: 10px 30px;
   background: linear-gradient(to bottom, #ffd67d, #ffe08b);
   font-size: var(--letterSize);
-
-  &[open] {
-    transition: opacity 1s;
-    opacity: 0;
-  }
-
-  &[open]:hover {
-    opacity: 1;
-  }
-
-  &[open]::backdrop {
-    background-color: #000000;
-    transition: opacity 1s;
-    opacity: 0;
-  }
-
-  &[open]:hover::backdrop {
-    opacity: 0.7;
-  }
+  opacity: 0;
 
   input {
     margin-left: 4px;
@@ -103,6 +85,33 @@ dialog {
       text-align: center;
       font-size: var(--letterSize);
     }
+  }
+}
+
+dialog[open] {
+  animation: fadein 0.4s linear forwards;
+}
+
+dialog[open]::backdrop {
+  background-color: #000000;
+  animation: fadein_backdrop 0.4s linear forwards;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein_backdrop {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.7;
   }
 }
 
