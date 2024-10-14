@@ -2,6 +2,7 @@ import { merge } from "webpack-merge";
 import common from "./webpack.common.js";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+import TerserPlugin from "terser-webpack-plugin";
 
 export default merge(common, {
   mode: "production",
@@ -41,6 +42,10 @@ export default merge(common, {
     ],
   },
   optimization: {
-    minimizer: [new CssMinimizerPlugin()],
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({ test: /\.js(\?.*)?$/i }),
+      new CssMinimizerPlugin(),
+    ],
   },
 });
