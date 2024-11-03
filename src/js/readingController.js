@@ -10,7 +10,6 @@ class ReadingController {
 
   loadReading(fileName, text) {
     this.reading.newReading(fileName, text, this.getSettings());
-    //TODO load index and all settings
     this.readingScreen.showPage(this.reading.getPage());
     this.readingScreen.showFileName(fileName);
     updateReadingData(this.reading.getPageSize(), this.reading.getPageIndex());

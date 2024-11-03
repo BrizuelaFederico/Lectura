@@ -1,4 +1,5 @@
 import { readingController } from "./init.js";
+import { loadReading as loadReadingFromDatabase } from "./loadSaveReading.js";
 
 const $inputFile = document.querySelector("article button input");
 
@@ -12,5 +13,10 @@ function loadFile(file) {
   fileReader.addEventListener("load", (event) => {
     const text = event.currentTarget.result;
     readingController.loadReading(file.name, text);
+    loadReadingFromDatabase(
+      file.name,
+      () => {},
+      () => {}
+    );
   });
 }

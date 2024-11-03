@@ -161,3 +161,5 @@ function alertOnErrorFunction(reject) {
   showErrorAlert(reject);
   console.log(reject);
 }
+
+export { loadReading };
