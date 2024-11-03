@@ -1,3 +1,5 @@
+import { showErrorAlert } from "./alert.js";
+
 class Database {
   constructor(databaseName, databaseVersion, tableNames) {
     this.db = null;
@@ -6,7 +8,9 @@ class Database {
       databaseVersion
     );
     request.onerror = (event) => {
-      //TODO Do something with request.error!
+      showErrorAlert(
+        "Error al intentar ingresar a la base de datos. Guardar y cargar pueden no funcionar correctamente"
+      );
     };
     request.onsuccess = (event) => {
       this.db = event.target.result;
