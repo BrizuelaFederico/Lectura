@@ -27,7 +27,7 @@ $showLoadReadingDialog.addEventListener("click", (event) => {
       showLoadReadingDialog(resolve);
     })
     .catch((reject) => {
-      onerrorFunction(reject);
+      alertOnErrorFunction(reject);
     });
 });
 
@@ -48,21 +48,23 @@ function showLoadReadingDialog(dbResult) {
 }
 
 $loadReadingDialogApplyButton.addEventListener("click", (event) => {
-  const result = db.get(TABLE_NAMES.READING, reading.getReadingName());
+  loadReading(reading.getReadingName(), loadAlert, alertOnErrorFunction);
+  $loadReadingDialog.close();
+});
+
+function loadReading(readingName, onCompleteFunction, onErrorFunction) {
+  const result = db.get(TABLE_NAMES.READING, readingName);
   result
     .then((resolve) => {
       loadSetting(resolve.setting);
       readingController.updateReading();
       readingController.goPage(resolve.pageIndex);
-      oncompleteFunction(
-        `Se pudo cargar correctamente la configurarión para la lectura "${resolve.id}"`
-      );
+      onCompleteFunction(resolve);
     })
     .catch((reject) => {
-      onerrorFunction(reject);
+      onErrorFunction(reject);
     });
-  $loadReadingDialog.close();
-});
+}
 
 $loadReadingDialogCancelButton.addEventListener("click", (event) => {
   $loadReadingDialog.close();
@@ -81,12 +83,10 @@ $saveReadingDialogApplyButton.addEventListener("click", (event) => {
   const result = db.add(TABLE_NAMES.READING, data);
   result
     .then((resolve) => {
-      oncompleteFunction(
-        `Se pudo guardar correctamente la configuración para la lectura "${data.id}"`
-      );
+      saveAlert(resolve);
     })
     .catch((reject) => {
-      onerrorFunction(reject);
+      alertOnErrorFunction(reject);
     });
   $saveReadingDialog.close();
 });
@@ -102,7 +102,7 @@ $showDeleteReadingDialog.addEventListener("click", (event) => {
       showDeleteReadingDialog(resolve);
     })
     .catch((reject) => {
-      onerrorFunction(reject);
+      alertOnErrorFunction(reject);
     });
 });
 
@@ -125,12 +125,10 @@ $deleteReadingDialogApplyButton.addEventListener("click", (event) => {
   const result = db.delete(TABLE_NAMES.READING, selectedSetting);
   result
     .then((resolve) => {
-      oncompleteFunction(
-        `Se pudo eliminar correctamente la configuración la lectura "${selectedSetting}"`
-      );
+      deleteAlert(selectedSetting);
     })
     .catch((reject) => {
-      onerrorFunction(reject);
+      alertOnErrorFunction(reject);
     });
   $deleteReadingDialog.close();
 });
@@ -139,12 +137,27 @@ $deleteReadingDialogCancelButton.addEventListener("click", (event) => {
   $deleteReadingDialog.close();
 });
 
-function oncompleteFunction(message) {
+function loadAlert(resolve) {
+  const message = `Se pudo cargar correctamente la configurarión para la lectura "${resolve.id}"`;
+  alertOnCompleteFunction(message);
+}
+
+function saveAlert(resolve) {
+  const message = `Se pudo guardar correctamente la configuración para la lectura "${resolve.id}"`;
+  alertOnCompleteFunction(message);
+}
+
+function deleteAlert(selectedSetting) {
+  const message = `Se pudo eliminar correctamente la configuración la lectura "${selectedSetting}"`;
+  alertOnCompleteFunction(message);
+}
+
+function alertOnCompleteFunction(message) {
   showSuccessAlert(message);
   console.log(message);
 }
 
-function onerrorFunction(message) {
-  showErrorAlert(message);
-  console.log(message);
+function alertOnErrorFunction(reject) {
+  showErrorAlert(reject);
+  console.log(reject);
 }
