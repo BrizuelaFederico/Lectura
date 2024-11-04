@@ -62,11 +62,7 @@ $showLoadSettingDialog.addEventListener("click", (event) => {
 });
 
 function showLoadSettingDialog(dbResult) {
-  let innerHTML = "<option>Default</option>";
-  Object.values(dbResult).forEach((value) => {
-    innerHTML = innerHTML.concat(`<option>${value.id}</option>`);
-  });
-  $settingDBselect.innerHTML = innerHTML;
+  generateOptions($settingDBselect, "Default", dbResult);
   $loadSettingDialog.showModal();
 }
 
@@ -106,11 +102,7 @@ $showDeleteSettingDialog.addEventListener("click", (event) => {
 });
 
 function showDeleteSettingDialog(dbResult) {
-  let innerHTML = "<option>_</option>";
-  Object.values(dbResult).forEach((value) => {
-    innerHTML = innerHTML.concat(`<option>${value.id}</option>`);
-  });
-  $deleteSettingDBselect.innerHTML = innerHTML;
+  generateOptions($deleteSettingDBselect, "-", dbResult);
   $deleteSettingDialog.showModal();
 }
 
@@ -120,7 +112,7 @@ $deleteSettingCancelButton.addEventListener("click", (event) => {
 
 $deleteSettingApplyButton.addEventListener("click", (event) => {
   const selectedSetting = $deleteSettingDBselect.selectedOptions[0].label;
-  if (selectedSetting == "_") {
+  if (selectedSetting == "-") {
     $deleteSettingDialog.close();
     return;
   }
@@ -137,6 +129,22 @@ $deleteSettingApplyButton.addEventListener("click", (event) => {
     });
   $deleteSettingDialog.close();
 });
+
+function generateOptions($element, firstOptionText, dbResult) {
+  while ($element.firstChild) {
+    $element.removeChild($element.firstChild);
+  }
+
+  let $option = document.createElement("option");
+  $option.textContent = firstOptionText;
+  $element.appendChild($option);
+
+  Object.values(dbResult).forEach((value) => {
+    $option = document.createElement("option");
+    $option.textContent = value.id;
+    $element.appendChild($option);
+  });
+}
 
 function oncompleteFunction(message) {
   showSuccessAlert(message);

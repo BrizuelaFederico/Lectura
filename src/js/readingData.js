@@ -5,15 +5,15 @@ const $remainingReadingTime = document.getElementById("remainingReadingTime");
 const getValue = (elem) => parseInt(document.getElementById(elem).value);
 
 function setActualPage(totalPage, actualPage) {
-  $actualPage.innerText = `${actualPage}/${totalPage}`;
+  $actualPage.textContent = `${actualPage}/${totalPage}`;
 }
 
 function setTotalReadingTime(totalReadingTimeInSeconds) {
-  $totalReadingTime.innerText = getHHMMSS(totalReadingTimeInSeconds);
+  $totalReadingTime.textContent = getHHMMSS(totalReadingTimeInSeconds);
 }
 
 function setRemainingReadingTime(remainingReadingTimeInSeconds) {
-  $remainingReadingTime.innerText = getHHMMSS(remainingReadingTimeInSeconds);
+  $remainingReadingTime.textContent = getHHMMSS(remainingReadingTimeInSeconds);
 }
 
 function getHHMMSS(seconds) {

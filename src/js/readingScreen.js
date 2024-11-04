@@ -10,18 +10,21 @@ class ReadingScreen {
   }
 
   showPage(page, endRow = false, endSet = false) {
-    let innerHTML = "";
-    let text = "";
-    for (let row of page) {
-      text = "";
-      for (let sets of row) {
-        text = text.concat(
-          `<pre>${sets.filter((word) => word != "\r\n").join(" ")}</pre>`
-        );
-      }
-      innerHTML = innerHTML.concat(`<div>${text}</div>`);
+    let $pre = null;
+    let $div = null;
+
+    while ($screen.firstChild) {
+      $screen.removeChild($screen.firstChild);
     }
-    $screen.innerHTML = innerHTML;
+    for (let row of page) {
+      $div = document.createElement("div");
+      for (let sets of row) {
+        $pre = document.createElement("pre");
+        $pre.textContent = sets.filter((word) => word != "\r\n").join(" ");
+        $div.appendChild($pre);
+      }
+      $screen.appendChild($div);
+    }
     this.getRowSet(endRow, endSet);
   }
 
@@ -41,7 +44,7 @@ class ReadingScreen {
   }
 
   showFileName(name) {
-    $fileName.innerHTML = name;
+    $fileName.textContent = name;
   }
 
   goNextRow() {

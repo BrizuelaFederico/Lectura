@@ -32,17 +32,17 @@ $showLoadReadingDialog.addEventListener("click", (event) => {
 });
 
 function showLoadReadingDialog(dbResult) {
-  let innerHTML = "";
+  let textContent = "";
   if (dbResult) {
     if ($loadReadingDialogApplyButton.hasAttribute("hidden")) {
       $loadReadingDialogApplyButton.removeAttribute("hidden");
     }
-    innerHTML = `¿Cargar el último guardado (ubicación y estilos) del archivo "${dbResult.id}"?`;
-    $loadReadingDialog.querySelector("p").innerHTML = innerHTML;
+    textContent = `¿Cargar el último guardado (ubicación y estilos) del archivo "${dbResult.id}"?`;
+    $loadReadingDialog.querySelector("p").textContent = textContent;
   } else {
     $loadReadingDialogApplyButton.setAttribute("hidden", true);
-    innerHTML = `No hay un guardado de la lectura actual`;
-    $loadReadingDialog.querySelector("p").innerHTML = innerHTML;
+    textContent = `No hay un guardado de la lectura actual`;
+    $loadReadingDialog.querySelector("p").textContent = textContent;
   }
   $loadReadingDialog.showModal();
 }
@@ -107,17 +107,26 @@ $showDeleteReadingDialog.addEventListener("click", (event) => {
 });
 
 function showDeleteReadingDialog(dbResult) {
-  let innerHTML = "<option>_</option>";
+  while ($deleteReadingDBselect.firstChild) {
+    $deleteReadingDBselect.removeChild($deleteReadingDBselect.firstChild);
+  }
+
+  let $option = document.createElement("option");
+  $option.textContent = "-";
+  $deleteReadingDBselect.appendChild($option);
+
   Object.values(dbResult).forEach((value) => {
-    innerHTML = innerHTML.concat(`<option>${value.id}</option>`);
+    $option = document.createElement("option");
+    $option.textContent = value.id;
+    $deleteReadingDBselect.appendChild($option);
   });
-  $deleteReadingDBselect.innerHTML = innerHTML;
+
   $deleteReadingDialog.showModal();
 }
 
 $deleteReadingDialogApplyButton.addEventListener("click", (event) => {
   const selectedSetting = $deleteReadingDBselect.selectedOptions[0].label;
-  if (selectedSetting == "_") {
+  if (selectedSetting == "-") {
     $deleteReadingDialog.close();
     return;
   }

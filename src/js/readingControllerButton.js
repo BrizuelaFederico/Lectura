@@ -44,7 +44,7 @@ $previousSet.addEventListener("click", () => {
 
 $openSetPageDialog.addEventListener("click", () => {
   const totalPage = reading.getPageSize();
-  $setPageDialog.querySelector("b").innerHTML = totalPage;
+  $setPageDialog.querySelector("b").textContent = totalPage;
   $setPageDialog.showModal();
 });
 

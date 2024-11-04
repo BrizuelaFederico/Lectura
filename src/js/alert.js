@@ -15,7 +15,7 @@ function showErrorAlert(message) {
 
 function showAlert(message) {
   const $p = $alert.querySelector("p");
-  $p.innerHTML = message;
+  $p.textContent = message;
   $alert.style.transform = "translate(-50%, 1dvh)";
   setTimeout(() => {
     $alert.style.transform = "translate(-50%, -100%)";
